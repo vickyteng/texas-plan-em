@@ -1,0 +1,30 @@
+.component-users {
+    width: 300px;
+    background: #f2f2f2;
+    border-radius: 5px;
+    padding: 0;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+
+    .title {
+        background-color: gray;
+        color: white;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        & > div:first-child {
+            padding: 9px 10px 0;
+        }
+    }
+
+    .icon {
+        font-size: 30px;
+    }
+
+    .lists-container {
+        padding: 10px;
+
+        & > div:first-child {
+            margin-bottom: 10px;
+        }
+    }
+}
