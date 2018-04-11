@@ -1,4 +1,4 @@
-export const setUserName = name => ({
-    type: 'SET_USER_NAME',
-    name
+export const editUser = (updates) => ({
+    type: 'EDIT_USER',
+    updates
 });

@@ -8,13 +8,33 @@ describe('User Reducer', () => {
         })).toEqual({});
     });
 
-    it('should set name', () => {
-        expect(userReducer(undefined, {
-            type: 'SET_USER_NAME',
-            name: 'test'
+    it('should edit user', () => {
+        const updates = {
+            name: 'Tester'
+        }
+        expect(userReducer({
+            name: 'abc',
+            moderator: true
+        }, {
+            type: 'EDIT_USER',
+            updates
         })).toEqual({
-            name: 'test'
+            name: 'Tester',
+            moderator: true
         });
-    })
+    });
+
+    it('should set user id when starting session', () => {
+        expect(userReducer({
+            name: 'Tester'
+        }, {
+            type: 'START_SESSION',
+            session: 'abcd',
+            userId: 'xyz'
+        })).toEqual({
+            name: 'Tester',
+            id: 'xyz'
+        })
+    });
 
 });

@@ -1,10 +1,14 @@
+const editUser = (state, action) => ({
+    ...state,
+    ...action.updates
+});
+
 export default (state = {}, action) => {
     switch (action.type) {
-        case 'SET_USER_NAME':
-            return {
-                ...state,
-                name: action.name
-            }
+        case 'EDIT_USER':
+            return editUser(state, action);
+        case 'START_SESSION':
+            return editUser(state, { updates: { id: action.userId } })
         default:
             return state;
     }
