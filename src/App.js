@@ -1,20 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Container, Row, Col } from 'reactstrap';
+import React from 'react';
+import {
+  Button,
+  Card,
+  Col,
+  Container,
+  Form,
+  FormGroup,
+  Input,
+  Label,
+  Row
+} from 'reactstrap';
 
-class App extends Component {
-  render() {
-    return (
-      <Container>
-        <Row>
-          <Col xs={{size: 4, offset:4}} >
-          Test
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
-}
+const App = () => (
+  <Container>
+    <Row>
+      <Col sm={{size: 6, offset:3}} >
+        <Card body color="light">
+          <Form>
+            <FormGroup row>
+              <Label sm={2} for="name">Name</Label>
+              <Col sm={10}>
+                <Input name="name" id="name"/>
+              </Col>
+            </FormGroup>
+          </Form>
+          <Button>Start Session</Button>
+        </Card>
+      </Col>
+    </Row>
+  </Container>
+);
 
 export default App;
