@@ -11,5 +11,19 @@ body {
   padding: 0;
 }
 
+$red: #cc0000;
+$red-light: #f08080;
+
+$blue: #87ceeb;
+$blue-dark: #23435a;
+$blue-light: #c9ddea;
+
+$gray: #888888;
+$gray-light: #cccccc;
+
+$shadow-dark: rgba(0, 0, 0, 0.35);
+$shadow-light: rgba(0, 0, 0, 0.08);
+
 
 @import "scss/planning-card";
+@import "scss/button";

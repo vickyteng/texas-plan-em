@@ -1,0 +1,33 @@
+.button {
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  font: inherit;
+  border-radius: 10px;
+  padding: 10px 15px;
+  margin: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: top 50ms;
+  position: relative;
+  top: 0;
+  outline: none;
+
+  &:hover {
+    color: $blue-dark;
+    background: white;  
+  }
+
+  &:active {
+    top: 2px;
+  }
+
+  &:disabled {
+    color: $gray;
+    border-color: $gray;
+    background: transparent;
+  }
+
+}
