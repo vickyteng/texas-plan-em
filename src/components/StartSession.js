@@ -14,7 +14,7 @@ import {
 import { startStartSession } from 'actions/sessionActions';
 import { setUserName } from 'actions/userActions';
 
-export const StartSesssion = (props) => (
+export const StartSession = (props) => (
   <Container>
     <Row>
       <Col sm={{size: 6, offset:3}} >
@@ -26,8 +26,41 @@ export const StartSesssion = (props) => (
                 <Input name="name" id="name" onChange={e => props.setUserName(e.target.value)} value={props.name || ''} />
               </Col>
             </FormGroup>
+            {
+              props.session &&  
+              <FormGroup row>
+                <Label md={2} for="session-url">Url</Label>
+                <Col md={10}>
+                  <Input plaintext={true} name="session-url" id="session-url">{`${window.location.origin}/session/${props.session}`}</Input>
+                </Col>
+              </FormGroup>
+            }
+            {
+              props.session &&  
+              <FormGroup tag="fieldset">
+                <legend>Are you Participating or Observing?</legend>
+                <FormGroup check>
+                  <Input type="radio" name="user-type" id="participant"/>
+                  <Label check for="participant">
+                    Participant
+                  </Label>
+                </FormGroup>
+                <FormGroup check>
+                  <Input type="radio" name="user-type" id="observer"/>
+                  <Label check for="observer">
+                    Observer
+                  </Label>
+                </FormGroup>
+              </FormGroup>
+            }
           </Form>
-          <Button onClick={() => props.startStartSession(props.name)}>Start Session</Button>
+          {
+            props.session
+            ?
+            <Button id="join-session">Join Session</Button>
+            :
+            <Button id="start-session" onClick={() => props.startStartSession(props.name)}>Start Session</Button>
+          }
         </Card>
       </Col>
     </Row>
@@ -35,7 +68,8 @@ export const StartSesssion = (props) => (
 );
 
 const mapStateToProps = state => ({
-  name: state.user.name
+  name: state.user.name,
+  session: state.session || 'asfasdfasdf'
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -43,4 +77,4 @@ const mapDispatchToProps = dispatch => ({
   setUserName: name => dispatch(setUserName(name))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(StartSesssion);
+export default connect(mapStateToProps, mapDispatchToProps)(StartSession);
