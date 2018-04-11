@@ -2,13 +2,13 @@
     padding: 0;
 
     .title {
-        background-color: #000;
+        background-color: $red-light;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
 
         label {
             color: #fff;
-            padding: 4px 10px 0;
+            padding: 6px 10px 0;
         }
     }
     

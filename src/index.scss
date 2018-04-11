@@ -32,5 +32,7 @@ $shadow-light: rgba(0, 0, 0, 0.08);
 
 @import "scss/planning-card";
 @import "scss/button";
-@import "scss/users";
-@import "scss/user-list";
+@import "scss/users/users";
+@import "scss/users/user-list";
+@import "scss/users/user-item";
+

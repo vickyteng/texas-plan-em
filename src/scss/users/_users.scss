@@ -1,0 +1,56 @@
+.component-users {
+    position: relative;
+    width: 300px;
+    background: $blue-light;
+    border-radius: 5px;
+    padding: 0;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+
+    .title {
+        background-color: $blue-dark;
+        color: white;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        .label-container {
+            padding: 9px 10px 0;
+        }
+    }
+
+    .icon {
+        font-size: 30px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+    .icon.hidden {
+        display: none;
+    }
+
+    .lists-container {
+        padding: 10px;
+
+        & > div:first-child {
+            margin-bottom: 10px;
+        }
+    }
+
+    &.users-collapsed {
+        animation-name: collapsing;
+        animation-duration: 1s;
+    }
+    &.users-expanded {
+        animation-name: expanding;
+        animation-duration: 1s;
+    }
+
+    @keyframes collapsing {
+        from { height: 400px; }
+        to { height: 40px; }
+    }
+    @keyframes expanding {
+        from { height: 40px; }
+        to { height: 400px; }
+    }
+}

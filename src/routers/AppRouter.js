@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import StartSession from 'components/StartSession';
-import Users from 'components/Users';
+import Users from 'components/users/Users';
 
 const AppRouter = () => (
     <BrowserRouter>
