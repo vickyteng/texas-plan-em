@@ -24,6 +24,7 @@ $gray-light: #cccccc;
 $shadow-dark: rgba(0, 0, 0, 0.35);
 $shadow-light: rgba(0, 0, 0, 0.08);
 
-
-@import "scss/planning-card";
 @import "scss/button";
+@import "scss/game";
+@import "scss/planning-card";
+@import "scss/planning-card-holder";
