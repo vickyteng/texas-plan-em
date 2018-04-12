@@ -1,23 +1,7 @@
 .component-user-item {
-    padding: 5px 0;
-    color: #555;
+    background: #fff !important;
 
-    .item-col-moderator {
-        text-align: right;
-        line-height: 100%;
-
-
-    }
-
-    .item-col-ready {
-        text-align: center;
-    }
-
-    .icon-moderator {
-        font-size: 24px;
-    }
-    .icon-ready {
-        font-size: 24px;
-        color: #64d479;
+    &-icon-ready {
+        color: #35b54d !important;
     }
 }
