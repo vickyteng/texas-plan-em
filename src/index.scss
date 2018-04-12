@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand:500');
+@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
 
 * {
   box-sizing: border-box;
@@ -30,6 +31,17 @@ $gray-light: #cccccc;
 $shadow-dark: rgba(0, 0, 0, 0.35);
 $shadow-light: rgba(0, 0, 0, 0.08);
 
+
+h1 {
+  margin: 0;
+  padding: 0.25rem 0;
+  text-align: center;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 3rem;
+  color: white;
+  text-shadow: 1px 1px 3px $shadow-dark;
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -42,124 +54,92 @@ $shadow-light: rgba(0, 0, 0, 0.08);
 
 html, body, #root {
   height: 100%;
+  width: 100%;
 }
-
-body {
-  display: block;
-  // background-color: $blue-light;
-}
-
-.create-session-card {
-  margin-top: 12vh;
-  // border: 5px solid $blue-dark;
-  color: white;
-  border-radius: 10px;
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35);
-  background: $blue-dark;
-
-  .form-control-plaintext {
-    color: white;
-  }
-
-  legend {
-    font-size: 1.25rem;
-  }
-}
-
-.btn-texas-plan-em {
-  border: 2px solid white;
-  background: transparent;
-  color: white;
-  font: inherit;
-  border-radius: 10px;
-  padding: 10px 15px;
-  // margin: 10px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: top 50ms;
-  position: relative;
-  top: 0;
-  outline: none;
-
-  &:hover {
-    color: $blue-dark;
-    background: white;
-  }
-
-  &:active {
-    top: 2px;
-  }
-
-  &:disabled {
-    color: $gray;
-    border-color: $gray;
-    background: transparent;
-  }
-}
-
-.inner-card {
-  display: flex;
-  flex-direction: column;
-  background: white;
-  padding: 1rem;
-}
-
 
 .create-session {
+  height: 100%;
+  width: 100%;
+  background-color: $blue-light;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.card {
+  background-color: rgb(255, 255, 255); 
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px; 
+  border-radius: 2px; 
+  z-index: 1;
+}
+
+.create-session-outer {
+  width: 500px;
+  height: 800px;
+}
+
+.create-session-inner {
+  width: 400px;
+  // min-height: 300px;
+  position: absolute;
+  top: -100px;
+  margin: auto auto;
+  right: 0;
+  left: 0;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.top {
+  height: 50%;
+  background: $blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom {
+  position: relative;
+}
+
+.logo {
+  background: $blue-dark;
+  display: inline-block;
+  width: 30%;
+  min-width: 350px;
+  height: 100%;
+
+  @media(max-width: 768px) {
+    width: 100%;
+    height: 100px;
+  }
+
+  h1 {
+    font-family: 'Permanent Marker', cursive;
+
+    @media(max-width: 768px) {
+      text-align: center;
+      height: 100px;
+      line-height: 100px;
+      vertical-align: middle;
+      margin: 0;
+    }
+  }
+} 
+
+.start-session {
   background: $blue-light;
-  min-height: 100%;
-  padding: 20px 15px;
-}
+  display: inline-block;
+  width: 70%;
+  height: 100%;
 
-.session-card {
-  background: white;
-  border: 10px solid $blue-dark;
-  border-radius: 5px;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.session-card-title {
-  background: #f6f6f6;
-  padding: 20px;
-  border-bottom: 1px solid #ccc;
-
-  h3 {
-    margin: 0;
-    text-align: center;
-    font-size: 1.5rem;
+  @media(max-width: 768px) {
+    width: 100%;
+    height: calc(100% - 100px);
   }
 }
 
-.session-card-body {
-  padding: 20px;
-
-  legend {
-    font-size: 1.25rem;
-  }
-}
-
-.session-card-footer {
-  background: #f6f6f6;
-  padding: 20px;
-  border-top: 1px solid #ccc;
-}
-
-.btn-inverse {
-  border: 2px solid $blue-dark;
-  background: transparent;
-  color: $blue-dark;
-  border-radius: 10px;
-  cursor: pointer;
-  outline: none;
-
-  &:hover:enabled {
-    color: white;
-    background: $blue-dark;
-  }
-}
 
 @import "scss/button";
 @import "scss/game";

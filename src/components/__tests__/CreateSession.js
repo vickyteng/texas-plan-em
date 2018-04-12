@@ -34,24 +34,12 @@ describe('Start Session Component', () => {
         expect(component.find('.session-card-body Row > Col Input#name').length).toEqual(1);
     });
 
-    it('should render the session url in the session card body when there is a session', () => {
-        const component = shallow(<CreateSession session="xyz" />);
+    it('should render the session url in the session card body', () => {
+        const component = shallow(<CreateSession />);
 
-        expect(component.find('.session-card-body Row > Col Input#session-url').length).toEqual(1);
+        expect(component.find('.session-card-body Row > Col SessionUrl').length).toEqual(1);
     });
-
-    it('should render the readOnly session url in the session card body when there is a session', () => {
-        const component = shallow(<CreateSession session="xyz" />);
-
-        expect(component.find('.session-card-body Row > Col Input#session-url[readOnly]').length).toEqual(1);
-    });
-
-    it('should render the readOnly session url with the correct url in the session card body when there is a session', () => {
-        const component = shallow(<CreateSession session="xyz" />);
-
-        expect(component.find('.session-card-body Row > Col Input#session-url[readOnly]').props().value).toEqual(`${window.location.origin}/session/xyz`);
-    });
-
+    
     it('should render an \'Are you Participating or Observing?\' radio group in the session card body when there is a session', () => {
         const component = shallow(<CreateSession session="xyz" />);
 
