@@ -1,0 +1,20 @@
+.component-user-list {
+    padding: 0;
+
+    .title {
+        background-color: $red-light;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+
+        label {
+            color: #fff;
+            padding: 6px 10px 0;
+        }
+    }
+    
+    .list-group {
+        a:first-child {
+            border-radius: 0;
+        }
+    }
+}

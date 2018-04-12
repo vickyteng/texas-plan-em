@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 body {
   font-family: 'Quicksand', Helvetica, sans-serif;
   font-size: 16px;
@@ -23,7 +29,6 @@ $gray-light: #cccccc;
 
 $shadow-dark: rgba(0, 0, 0, 0.35);
 $shadow-light: rgba(0, 0, 0, 0.08);
-
 
 @import "scss/planning-card";
 @import "scss/button";
@@ -148,3 +153,7 @@ body {
     background: $blue-dark;  
   }
 }
+@import "scss/users/users";
+@import "scss/users/user-list";
+@import "scss/users/user-item";
+
