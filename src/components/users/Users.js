@@ -1,4 +1,5 @@
 import * as React from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames';
 import { 
     Col,
@@ -20,11 +21,13 @@ class Users extends React.Component {
 
     render() {
         return (
-            <Container className={classNames({
-                    "component-users" : true,
+            <Container 
+                className={classNames({
+                    "component-users noselect" : true,
                     "users-collapsed" : !this.state.isExpanded,
                     "users-expanded" : this.state.isExpanded,
-                })}>
+                })}
+                >
                 <Row noGutters={true} className="title">
                     <Col sm={10} className="label-container">
                         <Label>USERS</Label>
