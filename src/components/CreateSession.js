@@ -1,23 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-    Button,
-    Col,
-    Form,
-    FormGroup,
-    Input,
-    InputGroup,
-    InputGroupAddon,
-    InputGroupText,
-    Label,
-    Row
-} from 'reactstrap';
+import { Card, CardTitle, CardText } from 'material-ui/Card';
+import TextField from 'material-ui/TextField';
+import { RadioButton, RadioButonGroup, RadioButtonGroup } from 'material-ui/RadioButton'; 
 import FontAwesome from 'react-fontawesome';
 import { startStartSession } from 'actions/sessionActions';
 import { editUser } from 'actions/userActions';
+import SessionUrl from 'components/SessionUrl';
 
 export const CreateSession = (props) => (
     <div className="create-session">
+        {/* <div className="app-title">
+            <h1>Texas Plan 'em</h1>
+        </div> */}
+        {/*
         <div className="session-card">
             <div className="session-card-title">
                 <h3>Create New Game</h3>
@@ -52,24 +48,7 @@ export const CreateSession = (props) => (
                                     </InputGroupAddon>
                                 </InputGroup>
                             </FormGroup>
-                            {
-                                props.session &&
-                                <FormGroup>
-                                    <InputGroup>
-                                        <Input
-                                            name="session-url"
-                                            id="session-url"
-                                            value={`${window.location.origin}/session/${props.session}`}
-                                            readOnly
-                                        />
-                                        <InputGroupAddon addonType="append">
-                                        <InputGroupText>
-                                            <FontAwesome name="copy" fixedWidth={true} />
-                                        </InputGroupText>
-                                    </InputGroupAddon>
-                                    </InputGroup>
-                                </FormGroup>
-                            }
+                            <SessionUrl session={props.session} />
                             {
                                 props.session &&
                                 <hr/>
@@ -136,6 +115,64 @@ export const CreateSession = (props) => (
                         }
                     </Col>
                 </Row>
+            </div>
+        </div>
+                    */}
+        {/* <Card className="session-card">
+            <CardTitle title="Create New Game" />
+            <CardText>
+                <TextField
+                    floatingLabelText="Name"
+                    fullWidth={true}
+                    value={props.name || ''}
+                    onChange={e => props.editUser({name: e.target.value})}
+                />
+            </CardText>
+        </Card> */}
+        <div className="card create-session-outer">
+            <div className="top">
+                <h1>Texas Plan 'em</h1>
+            </div>
+            <div className="bottom">
+                <div className="card create-session-inner">
+                    <TextField
+                        floatingLabelText="Name"
+                        fullWidth={true}
+                        value={props.name || ''}
+                        onChange={e => props.editUser({name: e.target.value})}
+                    />
+                    {
+                        props.session &&
+                        <TextField
+                            floatingLabelText="URL"
+                            fullWidth={true}
+                            value={props.session ? `${window.location.origin}/game/${props.session}` : ''}
+                            inputprops={{
+                                readOnly: true
+                            }}
+                        />
+                    }
+                    {
+                        props.session &&
+                        <RadioButtonGroup name="role" onChange={(event, value) => props.editUser({role: value})}>
+                            <RadioButton
+                                value="Participant"
+                                label="Participant"
+                            />
+                            <RadioButton
+                                value="Observer"
+                                label="Observer"
+                            />
+                        </RadioButtonGroup>
+                    }
+                    <button
+                        id="start-session"
+                        onClick={() => props.startStartSession(props.name)}
+                        disabled={!props.name}
+                    >
+                        Start Session
+                    </button>
+                </div>
             </div>
         </div>
     </div>
