@@ -17,6 +17,7 @@ body {
   padding: 0;
 }
 
+
 $red: #cc0000;
 $red-light: #f08080;
 
@@ -29,6 +30,16 @@ $gray-light: #cccccc;
 
 $shadow-dark: rgba(0, 0, 0, 0.35);
 $shadow-light: rgba(0, 0, 0, 0.08);
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
 
 @import "scss/planning-card";
 @import "scss/button";

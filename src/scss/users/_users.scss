@@ -37,20 +37,9 @@
     }
 
     &.users-collapsed {
-        animation-name: collapsing;
-        animation-duration: 1s;
+        max-height: 40px;
     }
     &.users-expanded {
-        animation-name: expanding;
-        animation-duration: 1s;
-    }
 
-    @keyframes collapsing {
-        from { height: 400px; }
-        to { height: 40px; }
-    }
-    @keyframes expanding {
-        from { height: 40px; }
-        to { height: 400px; }
     }
 }
