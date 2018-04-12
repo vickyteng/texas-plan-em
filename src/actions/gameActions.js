@@ -2,21 +2,21 @@ import database from 'database/firebase';
 import ActionList from 'actions/ActionList';
 
 export const submitCard = (value) => ({
-  type: 'SUBMIT_CARD',
+  type: ActionList.GAME.SUBMIT_CARD,
   value
 });
 
 export const selectCard = (value) => ({
-  type: 'SELECT_CARD',
+  type: ActionList.GAME.SELECT_CARD,
   value
 });
 
 export const flipCards = () => ({
-  type: 'FLIP_CARDS'
+  type: ActionList.GAME.FLIP_CARDS
 });
 
 export const clearTable = () => ({
-  type: 'CLEAR_TABLE'
+  type: ActionList.GAME.CLEAR_TABLE
 });
 
 export const playerList = (players) => ({
