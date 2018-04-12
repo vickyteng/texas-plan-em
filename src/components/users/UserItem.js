@@ -1,24 +1,30 @@
 import * as React from 'react';
-import {
-    Col,
-    ListGroupItem,
-    Row
-} from 'reactstrap';
+import { ListItem } from 'material-ui/List';
 import * as Ionicon from 'react-icons/lib/io'
 
-const UserItem = (props) => {
-    const moderatorIcon = props.isModerator ? <Ionicon.IoAndroidArrowDropright className="icon-moderator" /> : '';
-    const readyIcon = props.isReady && props.isParticipant ? <Ionicon.IoAndroidCheckbox className="icon-ready" /> : '';
+class UserItem extends React.Component {
+    
+    render() {
+        const moderatorIcon = this.props.isModerator ? <Ionicon.IoAndroidSend className="component-user-item-icon-moderator" /> : '';
+        const readyIcon = this.props.isReady && this.props.isParticipant ? <Ionicon.IoAndroidDone className="component-user-item-icon-ready" /> : '';
 
-    return (
-        <ListGroupItem className="component-user-item">
-            <Row noGutters={true} className="item-row">
-                <Col sm={1}  className="item-col item-col-moderator">{moderatorIcon}</Col>
-                <Col sm={9} className="item-col item-col-name">{props.name}</Col>
-                <Col sm={2}  className="item-col item-col-ready">{readyIcon}</Col>
-            </Row>
-        </ListGroupItem>
-    );
+        return (
+            <ListItem 
+                className="component-user-item"
+                insetChildren={true}
+                primaryText={this.props.name}
+                leftIcon={moderatorIcon}
+                rightIcon={readyIcon}
+                >
+            </ListItem>
+        );
+    }
+
+    componentDidMount () {
+        if (this.props.onRender) {
+            this.props.onRender();
+        }
+    }
 }
 
 export default UserItem;

@@ -1,45 +1,19 @@
 .component-users {
     position: relative;
-    width: 300px;
-    background: $blue-light;
+    width: 400px;
+    background: rgb(232, 232, 232);
     border-radius: 5px;
-    padding: 0;
-    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    //box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
     overflow: hidden;
-
-    .title {
-        background-color: $blue-dark;
-        color: white;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
-
-        .label-container {
-            padding: 9px 10px 0;
-        }
-    }
-
-    .icon {
+    margin: 0 auto;
+    
+    &-icon {
         font-size: 30px;
-        position: absolute;
-        right: 5px;
-        top: 5px;
-    }
-    .icon.hidden {
-        display: none;
+        margin-top: 10px;
+        cursor: pointer;
     }
 
-    .lists-container {
-        padding: 10px;
-
-        & > div:first-child {
-            margin-bottom: 10px;
-        }
-    }
-
-    &.users-collapsed {
-        max-height: 40px;
-    }
-    &.users-expanded {
-
+    &-list-container {
+        padding: 0 10px;
     }
 }

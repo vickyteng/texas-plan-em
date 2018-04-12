@@ -1,20 +1,23 @@
 .component-user-list {
-    padding: 0;
+    padding: 0 0 10px;
 
-    .title {
-        background-color: $red-light;
+    &-title {
+        background-color: $red-light !important;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
 
-        label {
+        span {
             color: #fff;
-            padding: 6px 10px 0;
+        }
+    }
+
+    &-list {
+        padding: 0 !important;
+
+        > div:last-child > .component-user-item {
+            border-bottom-left-radius: 5px !important;
+            border-bottom-right-radius: 5px !important;
         }
     }
     
-    .list-group {
-        a:first-child {
-            border-radius: 0;
-        }
-    }
 }

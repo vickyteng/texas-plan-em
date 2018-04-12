@@ -7,12 +7,15 @@ import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'font-awesome/css/font-awesome.css';
 import 'index.css';
+import { MuiThemeProvider } from 'material-ui/styles';
 
 const store = configureStore();
 
 const App = (
     <Provider store={store}>
-        <AppRouter/>
+        <MuiThemeProvider>
+            <AppRouter/>
+        </MuiThemeProvider>
     </Provider>
 );
 

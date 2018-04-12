@@ -1,65 +1,44 @@
 import * as React from 'react';
-import {
-    Col,
-    Container,
-    Label,
-    ListGroup,
-    ListGroupItem,
-    Row
-} from 'reactstrap';
 import UserItem from 'components/users/UserItem';
+import { List } from 'material-ui/List';
+import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
 
 class UserList extends React.Component {
 
-    constructor (props) {
-        super(props);
-        this.state = {
-            items: [
-                {
-                    name: 'Juan Flores',
-                    isModerator: true,
-                    isReady: true
-                }, {
-                    name: 'Sinh Nguyen',
-                    isModerator: false,
-                    isReady: true
-                }, {
-                    name: 'Matthew Wong',
-                    isModerator: false,
-                    isReady: false
-                }
-            ]
-        };
-    }
+    _itemRenderCount = 0
 
     render() {
         return (
-            <Container className="component-user-list">
-                <Row className="title" noGutters={true}>
-                    <Col sm={12}>
-                        <Label>{this.props.title}</Label>
-                    </Col>
-                </Row>
-                <Row noGutters={true}>
-                    <Col sm={12}>
-                        <ListGroup className="list-group">
-                            {
-                                this.state.items.map((item, i) => {
-                                  return (
-                                    <UserItem key={i}
-                                        name={item.name} 
-                                        isModerator={item.isModerator} 
-                                        isReady={item.isReady}
-                                        isParticipant={this.props.type === 'participants'}
-                                        />
-                                    );
-                                })
-                            }
-                        </ListGroup>
-                    </Col>
-                </Row>
-            </Container>
+            <div className="component-user-list">
+                <Toolbar className="component-user-list-title">
+                    <ToolbarTitle text={this.props.title} />
+                </Toolbar>
+                <List className="component-user-list-list">
+                    { this._renderUsers(this.props.items || []) }
+                </List>
+            </div>
         );
+    }
+
+    _renderUsers (userList) {
+        const items = userList.map((item, i) => {
+            return <UserItem key={i}
+                name={item.name} 
+                isModerator={item.isModerator} 
+                isReady={item.isReady}
+                isParticipant={this.props.type === 'participants'}
+                onRender={() => this._onUserItemRender() }
+                />
+        });
+
+        return items;
+    }
+
+    _onUserItemRender () {
+        this._itemRenderCount++;
+        if (this._itemRenderCount === this.props.items.length && this.props.onUserChange) {
+            this.props.onUserChange(this.props.items);
+        }
     }
 
 }
