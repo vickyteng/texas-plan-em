@@ -25,9 +25,9 @@
   }
 
   &:disabled {
-    color: $gray;
+    color: $gray-light;
     border-color: $gray;
-    background: transparent;
+    background: $gray;
   }
 
 }

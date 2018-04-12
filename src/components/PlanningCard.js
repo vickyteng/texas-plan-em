@@ -9,8 +9,8 @@ export default function(props) {
       'planning-card--face-down': props.faceDown,
       'planning-card--selected': props.selected
     }
-    )} data-value={props.value}>
-      {props.value}
+    )} data-value={props.faceDown ? '' : props.value} onClick={props.onclick}>
+      {props.faceDown ? '' : props.value}
       {props.name && 
         <div className="planning-card__name">{props.name}</div>
       }

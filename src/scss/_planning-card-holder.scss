@@ -1,22 +1,31 @@
 .card-container {
   background: $blue-dark;
-  position: relative;
   padding-top: 25px;
-  display: flex;
-  justify-content: center;
+  display: block;
+  text-align: center;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  @media (max-width: 768px) {
+    height: 180px;
+  }
+
 }
 
 .card-overlay {
-  max-height: 140px;
-  height: 10vw;
-  min-height: 60px;
+  height: 140px;
   width: 100%;
   position: absolute;
   bottom: 0;
   background: $blue-dark;
-  box-shadow: $shadow-dark;
+  box-shadow: 0px -2px 1px $shadow-dark;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 3;
+
+  @media (max-width: 768px) {
+    height: 70px;
+  }
 }

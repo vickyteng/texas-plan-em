@@ -1,12 +1,20 @@
-.game-window {
-  height: 400px;
+.game {
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.game__stage {
+  flex-basis: 400px;
+  flex-grow: 1;
   background-color: lighten( #1D384B, 65);
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
 }
 
-.card-table {
+.game__table {
   background: skyblue;
   padding: 20px;
   margin: 40px;
@@ -15,6 +23,16 @@
   justify-content: center;
   align-items: center;
   box-shadow: 2px 2px 4px rgba(#ccc, 0.75);
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    margin: 15px;
+    padding: 10px;
+  }
+}
+
+.game__card-holder {
+  position: relative;
 }
 
 .place {
