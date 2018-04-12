@@ -1,7 +1,8 @@
 import database from 'database/firebase';
+import ActionList from 'actions/ActionList';
 
 export const startSession = (session, userId) => ({
-    type: 'START_SESSION',
+    type: ActionList.SESSION.START_SESSION,
     session,
     userId
 });

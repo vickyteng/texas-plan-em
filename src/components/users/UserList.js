@@ -4,7 +4,6 @@ import {
     Container,
     Label,
     ListGroup,
-    ListGroupItem,
     Row
 } from 'reactstrap';
 import UserItem from 'components/users/UserItem';
