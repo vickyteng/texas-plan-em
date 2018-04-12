@@ -1,0 +1,50 @@
+.game {
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.game__stage {
+  flex-basis: 400px;
+  flex-grow: 1;
+  background-color: lighten( #1D384B, 65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.game__table {
+  background: skyblue;
+  padding: 20px;
+  margin: 40px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 4px rgba(#ccc, 0.75);
+
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    margin: 15px;
+    padding: 10px;
+  }
+}
+
+.game__card-holder {
+  position: relative;
+}
+
+.place {
+  margin: 10px;
+  width: 45px;
+  height: 62.5px;
+  background-color: rgba(0, 0, 0, 0.10);
+  border-radius: 5px;
+  padding: 0;
+}
+
+.place .card {
+  margin: 0;
+  margin-top: -4px;
+}

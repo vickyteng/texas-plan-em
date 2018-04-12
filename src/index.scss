@@ -30,8 +30,15 @@ $gray-light: #cccccc;
 $shadow-dark: rgba(0, 0, 0, 0.35);
 $shadow-light: rgba(0, 0, 0, 0.08);
 
-@import "scss/planning-card";
-@import "scss/button";
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
 
 html, body, #root {
   height: 100%;
@@ -78,7 +85,7 @@ body {
 
   &:hover {
     color: $blue-dark;
-    background: white;  
+    background: white;
   }
 
   &:active {
@@ -150,10 +157,15 @@ body {
 
   &:hover:enabled {
     color: white;
-    background: $blue-dark;  
+    background: $blue-dark;
   }
 }
+
+@import "scss/button";
+@import "scss/game";
+@import "scss/planning-card";
+@import "scss/planning-card-holder";
 @import "scss/users/users";
 @import "scss/users/user-list";
 @import "scss/users/user-item";
-
+@import "scss/waiting";
