@@ -17,7 +17,6 @@ body {
   padding: 0;
 }
 
-
 $red: #cc0000;
 $red-light: #f08080;
 
@@ -40,9 +39,6 @@ $shadow-light: rgba(0, 0, 0, 0.08);
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
-
-@import "scss/planning-card";
-@import "scss/button";
 
 html, body, #root {
   height: 100%;
@@ -89,7 +85,7 @@ body {
 
   &:hover {
     color: $blue-dark;
-    background: white;  
+    background: white;
   }
 
   &:active {
@@ -161,10 +157,15 @@ body {
 
   &:hover:enabled {
     color: white;
-    background: $blue-dark;  
+    background: $blue-dark;
   }
 }
+
+@import "scss/button";
+@import "scss/game";
+@import "scss/planning-card";
+@import "scss/planning-card-holder";
 @import "scss/users/users";
 @import "scss/users/user-list";
 @import "scss/users/user-item";
-
+@import "scss/waiting";

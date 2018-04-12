@@ -1,0 +1,19 @@
+
+@keyframes hover {
+  0% {
+      top: 20%;
+  }
+  100% {
+      top: 40%;
+  }
+}
+
+.waiting {
+  color: white;
+  font-size: 30px;
+  position: absolute;
+  animation: hover 800ms;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in-out;
+}
