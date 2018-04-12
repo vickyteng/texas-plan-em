@@ -30,4 +30,10 @@
     background: $gray;
   }
 
+  &--alt {
+    border: 2px solid $blue-dark;
+    background: $blue-dark;
+    color: white;
+  }
+
 }

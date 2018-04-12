@@ -154,7 +154,7 @@ export const CreateSession = (props) => (
                     }
                     {
                         props.session &&
-                        <RadioButtonGroup name="role" onChange={(event, value) => props.editUser({role: value})}>
+                        <RadioButtonGroup className="radio-group" name="role" onChange={(event, value) => props.editUser({role: value})}>
                             <RadioButton
                                 value="Participant"
                                 label="Participant"
@@ -165,13 +165,27 @@ export const CreateSession = (props) => (
                             />
                         </RadioButtonGroup>
                     }
-                    <button
-                        id="start-session"
-                        onClick={() => props.startStartSession(props.name)}
-                        disabled={!props.name}
-                    >
-                        Start Session
-                    </button>
+                    {
+                        props.session
+                        ?
+                        <button
+                            className="button button--alt"
+                            id="join-session"
+                            color="inverse"
+                            disabled={!props.name || !props.role}
+                        >
+                            Join Session
+                        </button>
+                        :
+                        <button
+                            className="button button--alt"
+                            id="start-session"
+                            onClick={() => props.startStartSession(props.name)}
+                            disabled={!props.name}
+                        >
+                            Start Session
+                        </button>
+                    }
                 </div>
             </div>
         </div>

@@ -91,6 +91,20 @@ html, body, #root {
   padding: 20px;
 }
 
+button#start-session,
+button#join-session {
+  margin: 15px auto 0;
+  display: block;
+}
+
+.radio-group {
+  margin: 10px 0;
+}
+
+.radio-group > div {
+  margin-bottom: 15px;
+}
+
 .top {
   height: 50%;
   background: $blue;
