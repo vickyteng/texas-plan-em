@@ -27,3 +27,124 @@ $shadow-light: rgba(0, 0, 0, 0.08);
 
 @import "scss/planning-card";
 @import "scss/button";
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  display: block;
+  // background-color: $blue-light;
+}
+
+.create-session-card {
+  margin-top: 12vh;
+  // border: 5px solid $blue-dark;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.35);
+  background: $blue-dark;
+
+  .form-control-plaintext {
+    color: white;
+  }
+
+  legend {
+    font-size: 1.25rem;
+  }
+}
+
+.btn-texas-plan-em {
+  border: 2px solid white;
+  background: transparent;
+  color: white;
+  font: inherit;
+  border-radius: 10px;
+  padding: 10px 15px;
+  // margin: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: top 50ms;
+  position: relative;
+  top: 0;
+  outline: none;
+
+  &:hover {
+    color: $blue-dark;
+    background: white;  
+  }
+
+  &:active {
+    top: 2px;
+  }
+
+  &:disabled {
+    color: $gray;
+    border-color: $gray;
+    background: transparent;
+  }
+}
+
+.inner-card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 1rem;
+}
+
+
+.create-session {
+  background: $blue-light;
+  min-height: 100%;
+  padding: 20px 15px;
+}
+
+.session-card {
+  background: white;
+  border: 10px solid $blue-dark;
+  border-radius: 5px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.session-card-title {
+  background: #f6f6f6;
+  padding: 20px;
+  border-bottom: 1px solid #ccc;
+
+  h3 {
+    margin: 0;
+    text-align: center;
+    font-size: 1.5rem;
+  }
+}
+
+.session-card-body {
+  padding: 20px;
+
+  legend {
+    font-size: 1.25rem;
+  }
+}
+
+.session-card-footer {
+  background: #f6f6f6;
+  padding: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.btn-inverse {
+  border: 2px solid $blue-dark;
+  background: transparent;
+  color: $blue-dark;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+
+  &:hover:enabled {
+    color: white;
+    background: $blue-dark;  
+  }
+}
