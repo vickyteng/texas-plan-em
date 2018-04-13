@@ -129,7 +129,7 @@ button#join-session {
 }
 
 .start-session {
-  background: $blue-light;
+  background: linear-gradient(to bottom, $stage-color-start, $stage-color-end);
   display: inline-block;
   width: 70%;
   height: 100%;
