@@ -4,47 +4,19 @@ import PlanningCardHolder from './PlanningCardHolder';
 
 export default class Game extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = Object.assign(this.initialState);
-    }
-
-    initialState = {
-        selectedValue: undefined,
-        values: [1, 2, 3, 5, 8, 13, "?"],
-        players: 1,
-        table: [],
-        cardsUp: false,
-        submitted: false
-    };
-
-    onCardSelect = val => {
-        if (this.state.submitted) {
-            return;
+    onSubmitCard = ( value ) => {
+        let submittedUsers = this.props.game.submitted || {};
+        if (value === (submittedUsers[this.props.user.id] || {}).card) {
+            value = null;
         }
-        if (val === this.state.selectedValue) {
-            val = undefined;
-        }
-        this.setState({ 
-            selectedValue: val
-        });
-    };
-
-    onSubmitCard = () => {
-        this.props.setSubmitCard(this.props.session, this.props.user.id, this.state.selectedValue);
-    };
-
-    clearTable = () => {
-        this.setState(
-            Object.assign({}, this.initialState)
-        )
+        this.props.setSubmitCard(this.props.session, this.props.user.id, value);
     };
 
     render () {
-        let cards = this.state.values.map( (val, i) => {
-            return <PlanningCard key={i} value={val} onclick={ this.onCardSelect.bind(this, val) } selected={val === this.state.selectedValue }/>
-        });
         let submittedUsers = this.props.game.submitted || {};
+        let cards = this.props.values.map( (val, i) => {
+            return <PlanningCard key={i} value={val} onclick={ this.onSubmitCard.bind(this, val) } selected={val === (submittedUsers[this.props.user.id] || {}).card }/>
+        });
         return (
             <div className="game">
                 <div className="game__stage">
@@ -61,12 +33,12 @@ export default class Game extends React.Component {
                 <div className="game__card-holder">
                     <PlanningCardHolder 
                         cards={cards} 
-                        ready={!!this.state.selectedValue} 
+                        ready={!!(submittedUsers[this.props.user.id] || {}).card} 
                         onSubmitCard={this.onSubmitCard} 
                         onFlipCards={this.props.setCardsUp.bind(this, this.props.session)}
-                        canFlipCards={true || this.state.players === this.state.table.length }
+                        canFlipCards={Object.keys(submittedUsers).length >= Object.keys(this.props.game.players).length }
                         resetGame={this.props.resetGame.bind(this, this.props.session)}
-                        submitted={this.state.submitted} 
+                        submitted={!!submittedUsers[this.props.user.id]} 
                         cardsUp={this.props.game.cardsUp}/>
                 </div>
             </div>
