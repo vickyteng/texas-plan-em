@@ -36,7 +36,7 @@ export default class Game extends React.Component {
                         ready={!!(submittedUsers[this.props.user.id] || {}).card} 
                         onSubmitCard={this.onSubmitCard} 
                         onFlipCards={this.props.setCardsUp.bind(this, this.props.session)}
-                        canFlipCards={Object.keys(submittedUsers).length >= Object.keys(this.props.game.players).length }
+                        canFlipCards={Object.keys(submittedUsers).length > 0 }
                         resetGame={this.props.resetGame.bind(this, this.props.session)}
                         submitted={!!submittedUsers[this.props.user.id]} 
                         cardsUp={this.props.game.cardsUp}/>
