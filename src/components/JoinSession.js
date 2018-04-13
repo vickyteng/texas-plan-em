@@ -1,9 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CreateSession from 'components/CreateSession';
 import { startSession } from 'actions/sessionActions';
-
 
 export class JoinSession extends React.Component {
     constructor(props, context) {
@@ -17,14 +15,6 @@ export class JoinSession extends React.Component {
         );
     }
 }
-
-JoinSession.defaultProps = {
-    
-};
-
-JoinSession.propTypes = {
-    
-};
 
 const mapDispatchToProps = (dispatch) => ({
     setSession: session => dispatch(startSession(session))

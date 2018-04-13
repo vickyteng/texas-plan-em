@@ -30,3 +30,9 @@ export const startJoinSession = (session, user) => {
 
     return updateDatabase;
 };
+
+export const leaveSession = (session, user) => {
+    debugger;
+    database.ref(`sessions/${session}/submitted/${user}`).remove();
+    database.ref(`sessions/${session}/Users/${user}`).remove();
+}

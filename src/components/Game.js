@@ -31,14 +31,6 @@ export default class Game extends React.Component {
     };
 
     onSubmitCard = () => {
-        // let values = this.state.values.filter( val => val !== this.state.selectedValue );
-        // let table = [].concat(this.state.table, [ this.state.selectedValue ]);
-        // this.setState({
-        //     values: values,
-        //     selectedValue: undefined,
-        //     table: table,
-        //     // submitted: true
-        // });
         this.props.setSubmitCard(this.props.session, this.props.user.id, this.state.selectedValue);
     };
 
@@ -62,9 +54,7 @@ export default class Game extends React.Component {
                             Object.keys(this.props.game.submitted).map((key, index) => <PlanningCard key={index} faceDown={!this.props.game.cardsUp} value={this.props.game.submitted[key].card} name={this.props.game.players[key].name} />)
                         }
                         {
-                            
-                            Object.keys(this.props.game.players).map((key, index) => !submittedUsers[key] && <div key={index} className="place"></div>)
-                            // (new Array(Math.max(Object.keys(this.props.game.players).length - Object.keys(this.props.game.submitted).length, 0))).fill(0).map( i=<div key={i} className="place"></div>)
+                            Object.keys(this.props.game.players).map((key, index) => ((!submittedUsers || !submittedUsers[key]) && <div key={index} className="place"></div>))
                         }
                     </div>
                 </div>

@@ -1,12 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Card, CardTitle, CardText } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
-import { RadioButton, RadioButonGroup, RadioButtonGroup } from 'material-ui/RadioButton'; 
-import FontAwesome from 'react-fontawesome';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'; 
 import { startStartSession, startJoinSession } from 'actions/sessionActions';
 import { editUser } from 'actions/userActions';
-import SessionUrl from 'components/SessionUrl';
 
 export const CreateSession = (props) => (
     <div className="create-session">
