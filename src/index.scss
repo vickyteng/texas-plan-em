@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand:500');
-@import url('https://fonts.googleapis.com/css?family=Permanent+Marker');
+@import url('https://fonts.googleapis.com/css?family=Maiden+Orange');
 
 * {
   box-sizing: border-box;
@@ -21,23 +21,29 @@ body {
 $red: #cc0000;
 $red-light: #f08080;
 
-$blue: #87ceeb;
-$blue-dark: #23435a;
-$blue-light: #c9ddea;
-
 $gray: #888888;
 $gray-light: #cccccc;
 
 $shadow-dark: rgba(0, 0, 0, 0.35);
 $shadow-light: rgba(0, 0, 0, 0.08);
 
+$table-color: #dc5a44;
+$stage-color-start: #dadad3;
+$stage-color-end: white;
+$card-face-down-start-color: #992e2a;
+$card-face-down-end-color: #b5534f;
+$card-font-color: #992e2a;
+$card-holder-color: #47403f;
+
 
 h1 {
   margin: 0;
   padding: 0.25rem 0;
   text-align: center;
-  font-family: 'Permanent Marker', cursive;
-  font-size: 3rem;
+  font-family: 'Maiden Orange', cursive;
+  letter-spacing: 2px;
+  font-weight: normal;
+  font-size: 4.5rem;
   color: white;
   text-shadow: 1px 1px 3px $shadow-dark;
 }
@@ -65,7 +71,7 @@ html, body, #root {
 .create-session {
   height: 100%;
   width: 100%;
-  background-color: $blue-light;
+  background: linear-gradient(to bottom, $stage-color-start, $stage-color-end);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,7 +118,7 @@ button#join-session {
 
 .top {
   height: 50%;
-  background: $blue;
+  background: $card-holder-color;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,31 +127,6 @@ button#join-session {
 .bottom {
   position: relative;
 }
-
-.logo {
-  background: $blue-dark;
-  display: inline-block;
-  width: 30%;
-  min-width: 350px;
-  height: 100%;
-
-  @media(max-width: 768px) {
-    width: 100%;
-    height: 100px;
-  }
-
-  h1 {
-    font-family: 'Permanent Marker', cursive;
-
-    @media(max-width: 768px) {
-      text-align: center;
-      height: 100px;
-      line-height: 100px;
-      vertical-align: middle;
-      margin: 0;
-    }
-  }
-} 
 
 .start-session {
   background: $blue-light;

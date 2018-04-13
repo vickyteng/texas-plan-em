@@ -13,7 +13,7 @@
   font-family: 'Quicksand', Helvetica, sans-serif;
   font-size: 45px;
   font-weight: 500;
-  color: darken(red, 10);
+  color: $red;
   position: relative;
   transition: bottom 200ms, transform 200ms, background 200ms, width 200ms, height 200ms;
   transform: rotateY(0deg);
@@ -69,8 +69,8 @@
     border-radius: 5px;
     background: linear-gradient(
       to bottom,
-      #B9514E 0%,
-      #B9514E 60%,
+      $card-face-down-start-color 0%,
+      $card-face-down-end-color 60%,
       white 60%,
       white 100%
     );

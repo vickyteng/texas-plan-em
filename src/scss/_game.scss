@@ -7,7 +7,7 @@
 .game__stage {
   flex-basis: 400px;
   flex-grow: 1;
-  background-color: lighten( #1D384B, 65);
+  background: linear-gradient(to bottom, $stage-color-start, $stage-color-end);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@
 }
 
 .game__table {
-  background: skyblue;
+  background: $table-color;
   padding: 20px;
   margin: 40px;
   border-radius: 20px;

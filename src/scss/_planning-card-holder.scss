@@ -1,5 +1,5 @@
 .card-container {
-  background: $blue-dark;
+  background: $card-holder-color;
   padding-top: 25px;
   display: block;
   text-align: center;
@@ -18,7 +18,7 @@
   width: 100%;
   position: absolute;
   bottom: 0;
-  background: $blue-dark;
+  background: inherit;
   box-shadow: 0px -2px 1px $shadow-dark;
   display: flex;
   justify-content: center;

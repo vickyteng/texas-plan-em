@@ -16,7 +16,7 @@
   outline: none;
 
   &:hover {
-    color: $blue-dark;
+    color: $card-holder-color;
     background: white;  
   }
 
@@ -31,9 +31,13 @@
   }
 
   &--alt {
-    border: 2px solid $blue-dark;
-    background: $blue-dark;
+    border: 2px solid $table-color;
+    background: $table-color;
     color: white;
+
+    &:hover {
+      color: $table-color;
+    }
   }
 
 }
