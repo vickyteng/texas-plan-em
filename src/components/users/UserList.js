@@ -21,15 +21,21 @@ class UserList extends React.Component {
     }
 
     _renderUsers (userList) {
-        const items = userList.map((item, i) => {
-            return <UserItem key={i}
-                name={item.name} 
-                isModerator={item.isModerator} 
-                isReady={item.isReady}
-                isParticipant={this.props.type === 'participants'}
-                onRender={() => this._onUserItemRender() }
-                />
-        });
+        const listType = (this.props.type || 'observer').toLowerCase();
+        const items = userList
+            .filter(user => {
+                const userRole = (user.role || 'observer').toString().toLowerCase()
+                return userRole === listType;
+            })
+            .map((item, i) => {
+                return <UserItem key={i}
+                    name={item.name} 
+                    isModerator={item.moderator} 
+                    isReady={item.ready}
+                    isParticipant={listType === 'participant'}
+                    onRender={() => this._onUserItemRender() }
+                    />
+            });
 
         return items;
     }

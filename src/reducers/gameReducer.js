@@ -3,7 +3,20 @@ import ActionList from 'actions/ActionList';
 let initialState = {
   selectedValue: undefined,
   values: [1, 2, 3, 5, 8, 13, "?"],
-  players: 1,
+  players: [
+    {
+      name: 'Chris Marc',
+      moderator: true,
+      role: 'participant',
+      ready: true
+    },
+    {
+      name: 'Sinh Nguyen',
+      moderator: false,
+      role: 'observer',
+      ready: false
+    }
+  ],
   table: [],
   cardsUp: false,
   submitted: false
