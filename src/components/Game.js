@@ -65,6 +65,7 @@ export default class Game extends React.Component {
         let cards = this.state.values.map( (val, i) => {
             return <PlanningCard key={i} value={val} onclick={ this.onCardSelect.bind(this, val) } selected={val === this.state.selectedValue }/>
         });
+        let submittedUsers = this.props.game.submitted || {};
         return (
             <div className="game">
                 <div className="game__stage">
@@ -74,7 +75,8 @@ export default class Game extends React.Component {
                             Object.keys(this.props.game.submitted).map((key, index) => <PlanningCard key={index} faceDown={!this.state.cardsUp} value={this.props.game.submitted[key].card} name={this.props.game.players[key].name} />)
                         }
                         {
-                            Object.keys(this.props.game.players).map((key, index) => !this.props.game.submitted[key] && <div key={index} className="place"></div>)
+                            
+                            Object.keys(this.props.game.players).map((key, index) => !submittedUsers[key] && <div key={index} className="place"></div>)
                             // (new Array(Math.max(Object.keys(this.props.game.players).length - Object.keys(this.props.game.submitted).length, 0))).fill(0).map( i=<div key={i} className="place"></div>)
                         }
                     </div>
