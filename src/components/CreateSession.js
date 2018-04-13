@@ -18,6 +18,7 @@ export const CreateSession = (props) => (
                 <div className="card create-session-inner">
                     <TextField
                         id="name"
+                        className="font-inherit"
                         floatingLabelText="Name"
                         fullWidth={true}
                         value={props.name || ''}
@@ -27,6 +28,7 @@ export const CreateSession = (props) => (
                         props.session &&
                         <TextField
                             id="url"
+                            className="font-inherit"
                             floatingLabelText="URL"
                             fullWidth={true}
                             value={props.session ? `${window.location.origin}/game/${props.session}` : ''}
@@ -37,7 +39,7 @@ export const CreateSession = (props) => (
                     }
                     {
                         props.session &&
-                        <RadioButtonGroup className="radio-group" name="role" onChange={(event, value) => props.editUser({role: value})}>
+                        <RadioButtonGroup className="radio-group font-inherit" name="role" onChange={(event, value) => props.editUser({role: value})}>
                             <RadioButton
                                 value="Participant"
                                 label="Participant"
