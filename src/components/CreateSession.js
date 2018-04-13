@@ -4,7 +4,7 @@ import { Card, CardTitle, CardText } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import { RadioButton, RadioButonGroup, RadioButtonGroup } from 'material-ui/RadioButton'; 
 import FontAwesome from 'react-fontawesome';
-import { startStartSession } from 'actions/sessionActions';
+import { startStartSession, startJoinSession } from 'actions/sessionActions';
 import { editUser } from 'actions/userActions';
 import SessionUrl from 'components/SessionUrl';
 
@@ -31,7 +31,7 @@ export const CreateSession = (props) => (
                             className="font-inherit"
                             floatingLabelText="URL"
                             fullWidth={true}
-                            value={props.session ? `${window.location.origin}/game/${props.session}` : ''}
+                            value={props.session ? `${window.location.origin}/join/${props.session}` : ''}
                             inputprops={{
                                 readOnly: true
                             }}
@@ -58,7 +58,7 @@ export const CreateSession = (props) => (
                             id="join-session"
                             color="inverse"
                             disabled={!props.name || !props.role}
-                            onClick={() => props.history.push(`game/${props.session}`)}
+                            onClick={() => props.startJoinSession(props.session, { id: props.userId, name: props.name, role: props.role }).then(() => props.history.push(`/game/${props.session}`))}
                         >
                             Join Session
                         </button>
@@ -79,6 +79,7 @@ export const CreateSession = (props) => (
 );
 
 const mapStateToProps = state => ({
+    userId: state.user.id,
     name: state.user.name,
     role: state.user.role,
     session: state.session
@@ -86,6 +87,7 @@ const mapStateToProps = state => ({
   
   const mapDispatchToProps = dispatch => ({
     startStartSession: name => dispatch(startStartSession(name)),
+    startJoinSession: (session, user) => dispatch(startJoinSession(session, user)),
     editUser: name => dispatch(editUser(name))
   });
 
