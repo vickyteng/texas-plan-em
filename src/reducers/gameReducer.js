@@ -28,8 +28,8 @@ export default (state = initialState, action) => {
                 ...state,
                 cardsUp: true
             };
-        case 'CLEAR_TABLE':
-            return {...initialState};
+        case 'RESET_GAME':
+            return {...state};
         case ActionList.GAME.UPDATE_PLAYERS:
             return {
                 ...state,

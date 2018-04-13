@@ -18,6 +18,11 @@ export default function(props) {
                 Flip Cards
             </button>
         }
+        {props.cardsUp &&
+            <button className="button" onClick={props.resetGame}>
+                Reset Game
+            </button>
+        }
     </div>
   </div>
 }

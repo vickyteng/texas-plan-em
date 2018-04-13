@@ -8,7 +8,7 @@ const ActionList = {
         SUBMIT_CARD: 'SUBMIT_CARD',
         SELECT_CARD: 'SELECT_CARD',
         FLIP_CARDS: 'FLIP_CARDS',
-        CLEAR_TABLE: 'CLEAR_TABLE',
+        CLEAR_TABLE: 'RESET_GAME',
         SUBMITTED_CARDS: 'SUBMITTED_CARDS'
     }
 };

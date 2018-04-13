@@ -2,13 +2,6 @@ import React from 'react';
 import PlanningCard from './PlanningCard';
 import PlanningCardHolder from './PlanningCardHolder';
 
-// import {
-//     submitCard,
-//     selectCard,
-//     flipCards,
-//     clearTable
-// } from '../actions/gameActions';
-
 export default class Game extends React.Component {
 
     constructor(props) {
@@ -49,12 +42,6 @@ export default class Game extends React.Component {
         this.props.setSubmitCard(this.props.session, this.props.user.id, this.state.selectedValue);
     };
 
-    onFlipCards = () => {
-        this.setState({
-            cardsUp: !this.state.cardsUp
-        });
-    };
-
     clearTable = () => {
         this.setState(
             Object.assign({}, this.initialState)
@@ -72,7 +59,7 @@ export default class Game extends React.Component {
                     <div className="game__table">
                         {
                             this.props.game.submitted &&
-                            Object.keys(this.props.game.submitted).map((key, index) => <PlanningCard key={index} faceDown={!this.state.cardsUp} value={this.props.game.submitted[key].card} name={this.props.game.players[key].name} />)
+                            Object.keys(this.props.game.submitted).map((key, index) => <PlanningCard key={index} faceDown={!this.props.game.cardsUp} value={this.props.game.submitted[key].card} name={this.props.game.players[key].name} />)
                         }
                         {
                             
@@ -86,9 +73,11 @@ export default class Game extends React.Component {
                         cards={cards} 
                         ready={!!this.state.selectedValue} 
                         onSubmitCard={this.onSubmitCard} 
-                        onFlipCards={this.onFlipCards}
+                        onFlipCards={this.props.setCardsUp.bind(this, this.props.session)}
                         canFlipCards={true || this.state.players === this.state.table.length }
-                        submitted={this.state.submitted} />
+                        resetGame={this.props.resetGame}
+                        submitted={this.state.submitted} 
+                        cardsUp={this.props.cardsUp}/>
                 </div>
             </div>
         )

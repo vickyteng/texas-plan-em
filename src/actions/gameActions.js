@@ -15,8 +15,8 @@ export const flipCards = () => ({
   type: ActionList.GAME.FLIP_CARDS
 });
 
-export const clearTable = () => ({
-  type: ActionList.GAME.CLEAR_TABLE
+export const resetGame = () => ({
+  type: ActionList.GAME.RESET_GAME
 });
 
 export const playerList = (players) => ({
@@ -35,6 +35,12 @@ export const watchPlayerList = (dispatch, gameId) => {
     });
 };
 
+export const watchCardsUp = (dispatch, gameId) => {
+    return database.ref(`/sessions/${gameId}/cardsUp`).on('value', (snapshot) => {
+        dispatch(flipCards(snapshot.val()));
+    });
+};
+
 export const watchSubmittedCards = (dispatch, gameId) => {
     return database.ref(`sessions/${gameId}/submitted`).on('value', (snapshot) => {
         dispatch(submittedCards(snapshot.val()));
@@ -44,3 +50,16 @@ export const watchSubmittedCards = (dispatch, gameId) => {
 export const setSubmitCard = (gameId, player, card) => {
     return dispatch => database.ref(`sessions/${gameId}/submitted/${player}`).set({card: card});
 };
+
+export const setCardsUp = (gameId) => {
+    return dispatch => database.ref(`sessions/${gameId}/cardsUp`).set(true);
+};
+
+export const sendResetGame = (gameId) => {
+    return dispatch => { 
+        return database.ref(`sessions/${gameId}/`).update({
+            submitted: {},
+            cardsUp: false
+        });
+    }
+}
