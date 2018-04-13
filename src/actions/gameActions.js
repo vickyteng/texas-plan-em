@@ -24,8 +24,23 @@ export const playerList = (players) => ({
     players
 });
 
+export const submittedCards = (cards) => ({
+    type: ActionList.GAME.SUBMITTED_CARDS,
+    cards
+});
+
 export const watchPlayerList = (dispatch, gameId) => {
     return database.ref(`/sessions/${gameId}/Users`).on('value', (snapshot) => {
         dispatch(playerList(snapshot.val()));
     });
+};
+
+export const watchSubmittedCards = (dispatch, gameId) => {
+    return database.ref(`sessions/${gameId}/submitted`).on('value', (snapshot) => {
+        dispatch(submittedCards(snapshot.val()));
+    });
+};
+
+export const setSubmitCard = (gameId, player, card) => {
+    return dispatch => database.ref(`sessions/${gameId}/submitted/${player}`).set({card: card});
 };

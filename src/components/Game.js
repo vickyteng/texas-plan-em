@@ -23,7 +23,7 @@ export default class Game extends React.Component {
         table: [],
         cardsUp: false,
         submitted: false
-    }
+    };
 
     onCardSelect = val => {
         if (this.state.submitted) {
@@ -35,30 +35,31 @@ export default class Game extends React.Component {
         this.setState({ 
             selectedValue: val
         });
-    }
+    };
 
     onSubmitCard = () => {
-        let values = this.state.values.filter( val => val !== this.state.selectedValue );
-        let table = [].concat(this.state.table, [ this.state.selectedValue ]);
-        this.setState({
-            values: values,
-            selectedValue: undefined,
-            table: table,
-            // submitted: true
-        });
-    }
+        // let values = this.state.values.filter( val => val !== this.state.selectedValue );
+        // let table = [].concat(this.state.table, [ this.state.selectedValue ]);
+        // this.setState({
+        //     values: values,
+        //     selectedValue: undefined,
+        //     table: table,
+        //     // submitted: true
+        // });
+        this.props.setSubmitCard(this.props.session, this.props.user.id, this.state.selectedValue);
+    };
 
     onFlipCards = () => {
         this.setState({
             cardsUp: !this.state.cardsUp
         });
-    }
+    };
 
     clearTable = () => {
         this.setState(
             Object.assign({}, this.initialState)
         )
-    }
+    };
 
     render () {
         let cards = this.state.values.map( (val, i) => {
@@ -68,8 +69,14 @@ export default class Game extends React.Component {
             <div className="game">
                 <div className="game__stage">
                     <div className="game__table">
-                        { this.state.table.map( (val, i) => <PlanningCard key={i} faceDown={!this.state.cardsUp} value={val} />)}
-                        { (new Array(Math.max(this.state.players - this.state.table.length, 0))).fill(0).map( (val, i) => <div key={i} className="place"></div> ) }
+                        {
+                            this.props.game.submitted &&
+                            Object.keys(this.props.game.submitted).map((key, index) => <PlanningCard key={index} faceDown={!this.state.cardsUp} value={this.props.game.submitted[key].card} name={this.props.game.players[key].name} />)
+                        }
+                        {
+                            Object.keys(this.props.game.players).map((key, index) => !this.props.game.submitted[key] && <div key={index} className="place"></div>)
+                            // (new Array(Math.max(Object.keys(this.props.game.players).length - Object.keys(this.props.game.submitted).length, 0))).fill(0).map( i=<div key={i} className="place"></div>)
+                        }
                     </div>
                 </div>
                 <div className="game__card-holder">
