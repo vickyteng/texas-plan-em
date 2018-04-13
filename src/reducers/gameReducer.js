@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
         case 'FLIP_CARDS':
             return {
                 ...state,
-                cardsUp: true
+                cardsUp: action.value
             };
         case 'RESET_GAME':
             return {...state};

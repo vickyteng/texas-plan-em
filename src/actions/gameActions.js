@@ -11,8 +11,9 @@ export const selectCard = (value) => ({
   value
 });
 
-export const flipCards = () => ({
-  type: ActionList.GAME.FLIP_CARDS
+export const flipCards = (value) => ({
+  type: ActionList.GAME.FLIP_CARDS,
+    value
 });
 
 export const resetGame = () => ({

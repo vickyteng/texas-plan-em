@@ -13,12 +13,12 @@ export default function(props) {
         :
             !props.canFlipCards && <Waiting />
         }
-        {props.canFlipCards && 
+        {props.canFlipCards && !props.cardsUp &&
             <button className="button" disabled={!props.canFlipCards} onClick={props.onFlipCards}>
                 Flip Cards
             </button>
         }
-        {props.cardsUp &&
+        {props.canFlipCards && props.cardsUp &&
             <button className="button" onClick={props.resetGame}>
                 Reset Game
             </button>

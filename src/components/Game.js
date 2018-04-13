@@ -65,9 +65,9 @@ export default class Game extends React.Component {
                         onSubmitCard={this.onSubmitCard} 
                         onFlipCards={this.props.setCardsUp.bind(this, this.props.session)}
                         canFlipCards={true || this.state.players === this.state.table.length }
-                        resetGame={this.props.resetGame}
+                        resetGame={this.props.resetGame.bind(this, this.props.session)}
                         submitted={this.state.submitted} 
-                        cardsUp={this.props.cardsUp}/>
+                        cardsUp={this.props.game.cardsUp}/>
                 </div>
             </div>
         )

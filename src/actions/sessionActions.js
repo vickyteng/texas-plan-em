@@ -32,7 +32,7 @@ export const startJoinSession = (session, user) => {
 };
 
 export const leaveSession = (session, user) => {
-    debugger;
     database.ref(`sessions/${session}/submitted/${user}`).remove();
+    database.ref(`sessions/${session}/cardsUp`).remove();
     database.ref(`sessions/${session}/Users/${user}`).remove();
 }
