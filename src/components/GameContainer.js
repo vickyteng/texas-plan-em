@@ -2,8 +2,34 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Game from 'components/Game';
 import {watchPlayerList, watchSubmittedCards, setSubmitCard} from 'actions/gameActions';
+import { startSession, leaveSession } from 'actions/sessionActions';
 
 class GameContainer extends React.Component {
+    constructor(props) {
+        super(props);
+
+        if (!props.session) {
+            props.setSession(props.match.params.id, props.user.id);
+        }
+
+        if (!props.user.id) {
+            props.history.push(`/join/${props.match.params.id}`)
+        }
+    }
+
+    componentDidMount() {
+        const session = this.props.session;
+        const userId = this.props.user.id;
+
+        if (this.props.session) {
+            window.addEventListener('beforeunload', (event) => {
+                event.preventDefault();
+
+                leaveSession(session, userId);
+            });
+        }
+    }
+
     render() {
         return (
             <Game session={this.props.match.params.id} {...this.props} />
@@ -22,7 +48,8 @@ const mapDispatchToProps = (dispatch, props) => {
     watchPlayerList(dispatch, session);
     watchSubmittedCards(dispatch, session);
     return {
-        setSubmitCard: (session, playerId, card) => {dispatch(setSubmitCard(session, playerId, card))}
+        setSession: (session, userId) => dispatch(startSession(session, userId)),
+        setSubmitCard: (session, playerId, card) => dispatch(setSubmitCard(session, playerId, card))
     }
 };
 

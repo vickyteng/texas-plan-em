@@ -2,13 +2,6 @@ import React from 'react';
 import PlanningCard from './PlanningCard';
 import PlanningCardHolder from './PlanningCardHolder';
 
-// import {
-//     submitCard,
-//     selectCard,
-//     flipCards,
-//     clearTable
-// } from '../actions/gameActions';
-
 export default class Game extends React.Component {
 
     constructor(props) {
@@ -38,14 +31,6 @@ export default class Game extends React.Component {
     };
 
     onSubmitCard = () => {
-        // let values = this.state.values.filter( val => val !== this.state.selectedValue );
-        // let table = [].concat(this.state.table, [ this.state.selectedValue ]);
-        // this.setState({
-        //     values: values,
-        //     selectedValue: undefined,
-        //     table: table,
-        //     // submitted: true
-        // });
         this.props.setSubmitCard(this.props.session, this.props.user.id, this.state.selectedValue);
     };
 
