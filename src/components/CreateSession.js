@@ -55,7 +55,7 @@ export const CreateSession = (props) => (
                             id="join-session"
                             color="inverse"
                             disabled={!props.name || !props.role}
-                            onClick={() => props.startJoinSession(props.session, { id: props.userId, name: props.name, role: props.role }).then(() => props.history.push(`/game/${props.session}`))}
+                            onClick={() => props.startJoinSession(props.session, { id: props.userId, name: props.name, role: props.role, moderator: props.moderator }).then(() => props.history.push(`/game/${props.session}`))}
                         >
                             Join Session
                         </button>
@@ -79,6 +79,7 @@ const mapStateToProps = state => ({
     userId: state.user.id,
     name: state.user.name,
     role: state.user.role,
+    moderator: state.user.moderator || false,
     session: state.session
   })
   

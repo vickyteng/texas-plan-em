@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import ReactDOM from 'react-dom';
 import * as Ionicon from 'react-icons/lib/io'
 import UserList from 'components/users/UserList';
@@ -10,35 +11,7 @@ class Users extends React.Component {
         super(props);
         this.state = {
             isExpanded: true,
-            height: 5000,
-            participants: [
-                {
-                    name: 'Juan Flores',
-                    isModerator: true,
-                    isReady: true
-                }, 
-                {
-                    name: 'Sinh Nguyen',
-                    isModerator: false,
-                    isReady: true
-                }, 
-                {
-                    name: 'Matthew Wong',
-                    isModerator: false,
-                    isReady: false
-                }
-            ],
-            observers: [
-                {
-                    name: 'Chris Marc',
-                    isModerator: false,
-                    isReady: false
-                },{
-                    name: 'Michael Henry',
-                    isModerator: false,
-                    isReady: false
-                }
-            ]
+            height: 5000
         };
     }
 
@@ -55,8 +28,8 @@ class Users extends React.Component {
                         transition: 'max-height 0.1s ' + (this.state.isExpanded ? 'ease-in' : 'ease-out')
                     }}
                 >
-                    <UserList type="participants" items={this.state.participants} title="Participants" onUserChange={() => this._onUserChange() } />
-                    <UserList type="observers" items={this.state.observers} title="Observers" onUserChange={() => this._onUserChange() } />
+                    <UserList type="participant" items={this.props.players} title="Participants" onUserChange={() => this._onUserChange() } />
+                    <UserList type="observer" items={this.props.players} title="Observers" onUserChange={() => this._onUserChange() } />
                 </div>
             </div>
         );
@@ -85,4 +58,12 @@ class Users extends React.Component {
 
 }
 
-export default Users;
+const mapStateToProps = state => ({
+    players: state.game.players
+});
+  
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Users);

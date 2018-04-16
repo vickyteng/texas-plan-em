@@ -1,6 +1,7 @@
 import React from 'react';
 import PlanningCard from './PlanningCard';
 import PlanningCardHolder from './PlanningCardHolder';
+import Users from 'components/users/Users';
 
 export default class Game extends React.Component {
 
@@ -51,11 +52,17 @@ export default class Game extends React.Component {
                     <div className="game__table">
                         {
                             this.props.game.submitted &&
-                            Object.keys(this.props.game.submitted).map((key, index) => <PlanningCard key={index} faceDown={!this.props.game.cardsUp} value={this.props.game.submitted[key].card} name={this.props.game.players[key].name} />)
+                            Object.keys(this.props.game.submitted).map((key, index) => 
+                                <PlanningCard key={index} faceDown={!this.props.game.cardsUp} 
+                                    value={this.props.game.submitted[key].card} name={this.props.game.players[key].name} />)
                         }
                         {
-                            Object.keys(this.props.game.players).map((key, index) => ((!submittedUsers || !submittedUsers[key]) && <div key={index} className="place"></div>))
+                            Object.keys(this.props.game.players).map((key, index) => 
+                                ((!submittedUsers || !submittedUsers[key]) && <div key={index} className="place"></div>))
                         }
+                    </div>
+                    <div className="game_users">
+                        <Users />
                     </div>
                 </div>
                 <div className="game__card-holder">

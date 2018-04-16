@@ -8,7 +8,7 @@ export default (state = {}, action) => {
         case 'EDIT_USER':
             return editUser(state, action);
         case 'START_SESSION':
-            return editUser(state, { updates: { id: action.userId } })
+            return editUser(state, { updates: { id: action.userId, moderator: action.moderator } })
         default:
             return state;
     }

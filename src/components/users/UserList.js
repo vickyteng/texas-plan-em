@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import UserItem from 'components/users/UserItem';
 import { List } from 'material-ui/List';
 import { Toolbar, ToolbarTitle } from 'material-ui/Toolbar';
@@ -14,23 +15,36 @@ class UserList extends React.Component {
                     <ToolbarTitle text={this.props.title} />
                 </Toolbar>
                 <List className="component-user-list-list">
-                    { this._renderUsers(this.props.items || []) }
+                    { this._renderPlayers(this.props.items || {}, this.props.submitted || {}) }
                 </List>
             </div>
         );
     }
 
-    _renderUsers (userList) {
-        const items = userList.map((item, i) => {
-            return <UserItem key={i}
-                name={item.name} 
-                isModerator={item.isModerator} 
-                isReady={item.isReady}
-                isParticipant={this.props.type === 'participants'}
-                onRender={() => this._onUserItemRender() }
-                />
-        });
-
+    _renderPlayers (playerList, submittedList) {
+        const listType = (this.props.type || 'observer').toLowerCase();
+        const items = Object.keys(playerList)
+            .map(key => {
+                let player = JSON.parse(JSON.stringify(playerList[key]));
+                player.key = key;
+                return player; 
+            })
+            .filter(player => {
+                const playerRole = (player.role || 'observer').toString().toLowerCase()
+                return playerRole === listType;
+            })
+            .map((player, index) => {
+                const isReady = submittedList[player.key] != null;
+                const playerRole = (player.role || 'observer').toString().toLowerCase();
+                return <UserItem 
+                    key={index}
+                    name={player.name} 
+                    isModerator={player.moderator} 
+                    isReady={isReady}
+                    isParticipant={playerRole === 'participant'}
+                    onRender={() => this._onUserItemRender() }
+                    />
+            });
         return items;
     }
 
@@ -43,4 +57,12 @@ class UserList extends React.Component {
 
 }
 
-export default UserList;
+const mapStateToProps = state => ({
+    submitted: state.game.submitted
+});
+  
+const mapDispatchToProps = dispatch => ({
+
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserList);
