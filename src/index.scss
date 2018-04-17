@@ -53,6 +53,12 @@ h1 {
   font-family: inherit !important;
 }
 
+.text {
+  color: white;
+  font-size: 24px;
+  text-shadow: 1px 1px 3px $shadow-dark;
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

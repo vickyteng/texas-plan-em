@@ -4,7 +4,9 @@ import Waiting from './Waiting';
 export default function(props) {
 
   return <div className="card-container">
-    {props.cards}
+    { props.role === 'Participant' &&
+        props.cards
+    }
     <div className="card-overlay">
         {!props.submitted ? 
             null // <Waiting text="Kindly submit a card." />
