@@ -19,7 +19,7 @@ class Users extends React.Component {
         return (
             <div className="component-users noselect">
                 <Toolbar>
-                    <ToolbarTitle text="USERS" />
+                    <ToolbarTitle text="PLAYERS" />
                     { this._renderIcon(this._onClick.bind(this)) }
                 </Toolbar>
                 <div className="component-users-list-container"
