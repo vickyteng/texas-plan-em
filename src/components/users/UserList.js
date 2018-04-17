@@ -9,10 +9,11 @@ class UserList extends React.Component {
     _itemRenderCount = 0
 
     render() {
+        const title =`${this.props.title} (${this.props.items.length})`;
         return (
             <div className="component-user-list">
                 <Toolbar className="component-user-list-title">
-                    <ToolbarTitle text={this.props.title} />
+                    <ToolbarTitle text={title} />
                 </Toolbar>
                 <List className="component-user-list-list">
                     { this._renderPlayers(this.props.items || {}, this.props.submitted || {}) }
@@ -23,28 +24,18 @@ class UserList extends React.Component {
 
     _renderPlayers (playerList, submittedList) {
         const listType = (this.props.type || 'observer').toLowerCase();
-        const items = Object.keys(playerList)
-            .map(key => {
-                let player = JSON.parse(JSON.stringify(playerList[key]));
-                player.key = key;
-                return player; 
-            })
-            .filter(player => {
-                const playerRole = (player.role || 'observer').toString().toLowerCase()
-                return playerRole === listType;
-            })
-            .map((player, index) => {
-                const isReady = submittedList[player.key] != null;
-                const playerRole = (player.role || 'observer').toString().toLowerCase();
-                return <UserItem 
-                    key={index}
-                    name={player.name} 
-                    isModerator={player.moderator} 
-                    isReady={isReady}
-                    isParticipant={playerRole === 'participant'}
-                    onRender={() => this._onUserItemRender() }
-                    />
-            });
+        const items = playerList.map((player, index) => {
+            const isReady = submittedList[player.key] != null;
+            const isParticipant = (player.role || 'observer').toString().trim().toLowerCase() === 'participant';
+            return <UserItem 
+                key={index}
+                name={player.name} 
+                isModerator={player.moderator} 
+                isReady={isReady}
+                isParticipant={isParticipant}
+                onRender={() => this._onUserItemRender() }
+                />
+        });
         return items;
     }
 
