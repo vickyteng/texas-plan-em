@@ -23,7 +23,6 @@ class UserList extends React.Component {
     }
 
     _renderPlayers (playerList, submittedList) {
-        const listType = (this.props.type || 'observer').toLowerCase();
         const items = playerList.map((player, index) => {
             const isReady = submittedList[player.key] != null;
             const isParticipant = (player.role || 'observer').toString().trim().toLowerCase() === 'participant';
