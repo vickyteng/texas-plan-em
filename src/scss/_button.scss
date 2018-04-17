@@ -28,6 +28,10 @@
     color: $gray-light;
     border-color: $gray;
     background: $gray;
+    cursor: default;
+    &:hover {
+      color: $gray-light;
+    }
   }
 
   &--alt {

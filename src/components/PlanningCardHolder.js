@@ -7,9 +7,7 @@ export default function(props) {
     {props.cards}
     <div className="card-overlay">
         {!props.submitted ? 
-            <button className="button" disabled={!props.ready} onClick={props.onSubmitCard}>
-                Ready
-            </button>
+            null // <Waiting text="Kindly submit a card." />
         :
             !props.canFlipCards && <Waiting />
         }
