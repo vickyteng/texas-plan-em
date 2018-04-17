@@ -61,9 +61,6 @@ export default class Game extends React.Component {
                                 ((!submittedUsers || !submittedUsers[key]) && <div key={index} className="place"></div>))
                         }
                     </div>
-                    <div className="game_users">
-                        <Users />
-                    </div>
                 </div>
                 <div className="game__card-holder">
                     <PlanningCardHolder 
@@ -76,6 +73,7 @@ export default class Game extends React.Component {
                         submitted={this.state.submitted} 
                         cardsUp={this.props.game.cardsUp}/>
                 </div>
+                <Users />
             </div>
         )
     }

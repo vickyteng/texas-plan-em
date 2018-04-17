@@ -16,6 +16,9 @@ class Users extends React.Component {
     }
 
     render() {
+        const participants = this._filter(this.props.players, 'participant');
+        const observers = this._filter(this.props.players, 'observer');
+
         return (
             <div className="component-users noselect">
                 <Toolbar>
@@ -28,11 +31,26 @@ class Users extends React.Component {
                         transition: 'max-height 0.1s ' + (this.state.isExpanded ? 'ease-in' : 'ease-out')
                     }}
                 >
-                    <UserList type="participant" items={this.props.players} title="Participants" onUserChange={() => this._onUserChange() } />
-                    <UserList type="observer" items={this.props.players} title="Observers" onUserChange={() => this._onUserChange() } />
+                    { participants.length > 0 ? <UserList items={participants} title="Participants" onUserChange={() => this._onUserChange() } /> : '' }
+                    { observers.length > 0 ? <UserList items={observers} title="Observers" onUserChange={() => this._onUserChange() } /> : '' }
                 </div>
             </div>
         );
+    }
+
+    _filter (players, playerType) {
+        const type = (playerType || 'observer').toString().trim().toLowerCase();
+        const items = Object.keys(players)
+            .map(key => {
+                let player = JSON.parse(JSON.stringify(players[key]));
+                player.key = key;
+                return player; 
+            })
+            .filter(player => {
+                const playerRole = (player.role || 'observer').toString().trim().toLowerCase()
+                return playerRole === type;
+            });
+        return items;
     }
 
     _onUserChange () {
