@@ -32,7 +32,7 @@ class GameContainer extends React.Component {
 
     render() {
         return (
-            <Game session={this.props.match.params.id} {...this.props} />
+            <Game session={this.props.match.params.id} values={[1, 2, 3, 5, 8, 13, "?"]} {...this.props} />
         )
     }
 }
