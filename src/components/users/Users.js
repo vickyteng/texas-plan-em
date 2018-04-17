@@ -20,7 +20,7 @@ class Users extends React.Component {
         const observers = this._filter(this.props.players, 'observer');
 
         return (
-            <div className="component-users noselect">
+            <div className="component-users noselect font-inherit">
                 <Toolbar>
                     <ToolbarTitle text="PLAYERS" />
                     { this._renderIcon(this._onClick.bind(this)) }
