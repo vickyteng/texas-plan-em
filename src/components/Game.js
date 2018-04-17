@@ -30,11 +30,11 @@ export default class Game extends React.Component {
                         }
                         {
                             Object.keys(this.props.game.players).map((key, index) => 
-                                ((!submittedUsers || !submittedUsers[key]) && <div key={index} className="place"></div>))
+                                this.props.game.players[key].role === 'Participant' && ((!submittedUsers || !submittedUsers[key]) && <div key={index} className="place"></div>))
                         }
                     </div>
                 </div>
-                <div className="game__card-holder">
+                { this.props.user.role === 'Participant' && <div className="game__card-holder">
                     <PlanningCardHolder 
                         cards={cards} 
                         ready={!!(submittedUsers[this.props.user.id] || {}).card} 
@@ -44,7 +44,7 @@ export default class Game extends React.Component {
                         resetGame={this.props.resetGame.bind(this, this.props.session)}
                         submitted={!!submittedUsers[this.props.user.id]} 
                         cardsUp={this.props.game.cardsUp}/>
-                </div>
+                </div> }
                 <Users />
             </div>
         )
