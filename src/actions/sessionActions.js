@@ -1,5 +1,7 @@
 import database from 'database/firebase';
 import ActionList from 'actions/ActionList';
+import io from "socket.io-client"
+
 
 var server = process.env.REACT_APP_LOCAL_SERVER;
 
@@ -34,6 +36,12 @@ export function startStartSession (name) {
 export function startJoinSession (session, user) {
     let updateDatabase;
     const {id: userId, ...userInfo} = user;
+    let socket;
+
+    socket = io.connect("http://localhost:3005")
+        socket.on('connect', function(data) {
+             socket.emit('join', 'Hello World from client'); 
+            });
 
     // if moderator    
     if (userId) {
