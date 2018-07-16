@@ -1,7 +1,6 @@
 import database from 'database/firebase';
 import ActionList from 'actions/ActionList';
-import io from "socket.io-client"
-
+import socket from 'socket';
 
 var server = process.env.REACT_APP_LOCAL_SERVER;
 
@@ -36,55 +35,55 @@ export function startStartSession (name) {
 export function startJoinSession (session, user) {
     let updateDatabase;
     const {id: userId, ...userInfo} = user;
-    let socket;
 
-    socket = io.connect("http://localhost:3005")
-        socket.on('connect', function(data) {
-             socket.emit('join', 'Hello World from client'); 
-            });
-
-    // if moderator    
-    if (userId) {
-        updateDatabase = dispatch =>
-        fetch(`${server}/api/join-session/${session}`, {
-            method: 'put',
-            body: `role=${userInfo.role}&name=${userInfo.name}&userId=${userId}`,
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
+        // if moderator   
+        if (userId) {
+            let postData = {
+                sessionId: session,
+                userId: userId,
+                role: userInfo.role,
+                name: userInfo.name
             }
-        })
-        .then((response) => {
-            return response.json();
-        })
-        .catch(function (err) {
-            console.log('Request failure: ', err)
-        })
-        database.ref(`sessions/${session}/Users/${userId}`).set(userInfo);
-    // if joining session from URL 
-    } else {
-        updateDatabase = dispatch =>
-        fetch(`${server}/api/join-session/${session}`, {
-            method: 'put',
-            body: `role=${userInfo.role}&name=${userInfo.name}`,
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
+            updateDatabase = dispatch => {
+                socket.emit('join', postData);
+                return Promise.resolve();
             }
-        })
-        .then((response) => {
-            return response.json();
-        })
-        .then((responseData) => {
-            dispatch(startSession(session, responseData._userId))
-        })
-        .catch(function (err) {
-            console.log('Request failure: ', err)
-        })
-    }
-    
+            
+        // if joining session from URL 
+        } else {
+            updateDatabase = dispatch =>
+                fetch(`${server}/api/join-session/${session}`, {
+                    method: 'put',
+                    body: `role=${userInfo.role}&name=${userInfo.name}`,
+                    headers: {
+                        "Content-Type": "application/x-www-form-urlencoded"
+                    }
+                })
+                .then((response) => {
+                    return response.json();
+                })
+                .then((responseData) => {
+                    let postData = {
+                        sessionId: session,
+                        role: userInfo.role,
+                        name: userInfo.name
+                    }
+                    socket.emit('join', postData);
+                    dispatch(startSession(session, responseData._userId));
+                })
+                .catch(function (err) {
+                    console.log('Request failure: ', err)
+                })
+        }
     return updateDatabase;
 }
 
 export const leaveSession = (session, user) => {
+    const postData = {
+        sessionId: session,
+        userId: user
+    }
+    socket.emit('leave', postData);
     database.ref(`sessions/${session}/submitted/${user}`).remove();
     database.ref(`sessions/${session}/cardsUp`).remove();
     database.ref(`sessions/${session}/Users/${user}`).remove();

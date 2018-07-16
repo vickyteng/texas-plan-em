@@ -1,3 +1,4 @@
+import socket from 'socket';
 import database from 'database/firebase';
 import ActionList from 'actions/ActionList';
 
@@ -31,8 +32,10 @@ export const submittedCards = (cards) => ({
 });
 
 export const watchPlayerList = (dispatch, gameId) => {
-    return database.ref(`/sessions/${gameId}/Users`).on('value', (snapshot) => {
-        dispatch(playerList(snapshot.val()));
+    // retrieves user list from server
+    socket.on('user-joined', (players) => {
+        console.log(players)
+        dispatch(playerList(players));
     });
 };
 
