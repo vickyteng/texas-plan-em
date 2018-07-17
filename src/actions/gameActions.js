@@ -1,5 +1,4 @@
 import socket from 'socket';
-import database from 'database/firebase';
 import ActionList from 'actions/ActionList';
 
 export const submitCard = (value) => ({
@@ -32,37 +31,42 @@ export const submittedCards = (cards) => ({
 });
 
 export const watchPlayerList = (dispatch, gameId) => {
-    // retrieves user list from server
+    // retrieves player list from server
     socket.on('user-joined', (players) => {
         dispatch(playerList(players));
     });
 };
 
 export const watchCardsUp = (dispatch, gameId) => {
-    return database.ref(`/sessions/${gameId}/cardsUp`).on('value', (snapshot) => {
-        dispatch(flipCards(snapshot.val()));
-    });
+    socket.on('flip-cards', (value) => {
+        dispatch(flipCards(value));
+    })
 };
 
 export const watchSubmittedCards = (dispatch, gameId) => {
-    return database.ref(`sessions/${gameId}/submitted`).on('value', (snapshot) => {
-        dispatch(submittedCards(snapshot.val()));
-    });
+    // retrieve cards from server
+    socket.on('watch-submit-card', (cards) => {
+        dispatch(submittedCards(cards));
+    })
 };
 
 export const setSubmitCard = (gameId, player, card) => {
-    return dispatch => database.ref(`sessions/${gameId}/submitted/${player}`).set({card: card});
+    return dispatch => {
+        let postData = {
+            session: gameId,
+            user: player,
+            card: card
+        }
+        socket.emit('set-card', postData);
+    }
 };
 
 export const setCardsUp = (gameId) => {
-    return dispatch => database.ref(`sessions/${gameId}/cardsUp`).set(true);
+    return dispatch => socket.emit('set-cards-up', gameId);
 };
 
 export const sendResetGame = (gameId) => {
     return dispatch => { 
-        return database.ref(`sessions/${gameId}/`).update({
-            submitted: {},
-            cardsUp: false
-        });
+        socket.emit('reset-game', gameId);
     }
 }
