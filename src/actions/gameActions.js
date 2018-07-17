@@ -34,7 +34,6 @@ export const submittedCards = (cards) => ({
 export const watchPlayerList = (dispatch, gameId) => {
     // retrieves user list from server
     socket.on('user-joined', (players) => {
-        console.log(players)
         dispatch(playerList(players));
     });
 };

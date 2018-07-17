@@ -1,4 +1,3 @@
-import database from 'database/firebase';
 import ActionList from 'actions/ActionList';
 import socket from 'socket';
 
@@ -85,7 +84,4 @@ export const leaveSession = (session, user) => {
         user: user
     }
     socket.emit('leave', postData);
-    database.ref(`sessions/${session}/submitted/${user}`).remove();
-    database.ref(`sessions/${session}/cardsUp`).remove();
-    database.ref(`sessions/${session}/Users/${user}`).remove();
 }
