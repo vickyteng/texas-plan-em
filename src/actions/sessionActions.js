@@ -27,7 +27,7 @@ export function startStartSession (name) {
             dispatch(startSession(responseData._sessionId, responseData._userId, true))
         })
         .catch(function (err) {
-            console.log('Request failure: ', err)
+            console.error('Request failure: ', err)
         })
     }
 }
@@ -66,13 +66,14 @@ export function startJoinSession (session, user) {
                     let postData = {
                         sessionId: session,
                         role: userInfo.role,
-                        name: userInfo.name
+                        name: userInfo.name,
+                        userId: responseData._userId
                     }
-                    socket.emit('join', postData);
+                    socket.emit('join-new-user', postData);
                     dispatch(startSession(session, responseData._userId));
                 })
                 .catch(function (err) {
-                    console.log('Request failure: ', err)
+                    console.error('Request failure: ', err)
                 })
         }
     return updateDatabase;
@@ -80,8 +81,8 @@ export function startJoinSession (session, user) {
 
 export const leaveSession = (session, user) => {
     const postData = {
-        sessionId: session,
-        userId: user
+        session: session,
+        user: user
     }
     socket.emit('leave', postData);
     database.ref(`sessions/${session}/submitted/${user}`).remove();
