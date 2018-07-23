@@ -51,22 +51,20 @@ export const watchSubmittedCards = (dispatch, gameId) => {
 };
 
 export const setSubmitCard = (gameId, player, card) => {
-    return dispatch => {
-        let postData = {
-            session: gameId,
-            user: player,
-            card: card
-        }
-        socket.emit('set-card', postData);
+  return () => {
+    let postData = {
+        session: gameId,
+        user: player,
+        card: card
     }
+    socket.emit('set-card', postData);
+  }
 };
 
 export const setCardsUp = (gameId) => {
-    return dispatch => socket.emit('set-cards-up', gameId);
+  return () => socket.emit('set-cards-up', gameId);
 };
 
 export const sendResetGame = (gameId) => {
-    return dispatch => { 
-        socket.emit('reset-game', gameId);
-    }
-}
+  return () => socket.emit('reset-game', gameId);   
+};
