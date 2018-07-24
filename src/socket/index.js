@@ -1,4 +1,4 @@
-import io from 'socket.io-client'
+import io from 'socket.io-client';
 
-const socket = io.connect("http://localhost:3005");
+const socket = io.connect('http://localhost:3005');
 export default socket;
