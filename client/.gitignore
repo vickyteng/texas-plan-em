@@ -23,7 +23,6 @@ yarn-error.log*
 
 jsconfig.json
 
-.env
 
 .vscode
 .idea

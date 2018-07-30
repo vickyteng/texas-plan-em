@@ -1,7 +1,7 @@
 import ActionList from 'actions/ActionList';
 import socket from 'socket';
 
-var server = process.env.REACT_APP_LOCAL_SERVER;
+var server = 'https://texasplan-em-server.herokuapp.com/';
 
 export const startSession = (session, userId, moderator) => ({
     type: ActionList.SESSION.START_SESSION,
