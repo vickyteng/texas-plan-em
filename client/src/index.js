@@ -6,7 +6,7 @@ import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import registerServiceWorker from './registerServiceWorker';
 import 'font-awesome/css/font-awesome.css';
-import 'index.css';
+import './index.css';
 
 const store = configureStore();
 
