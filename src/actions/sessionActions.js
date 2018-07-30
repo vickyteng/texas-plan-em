@@ -1,5 +1,5 @@
-import ActionList from './ActionList';
-import socket from '../socket';
+import ActionList from 'actions/ActionList';
+import socket from 'socket';
 
 const server = process.env.REACT_APP_LOCAL_SERVER;
 
@@ -15,17 +15,18 @@ export function startStartSession(name) {
     fetch(`${server}/api/create-session`, {
       method: 'post',
       body: `name=${name}`,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
+      headers:
+              {
+                'Content-Type': 'application/x-www-form-urlencoded',
+              },
     })
       .then((response) => {
         return response.json();
       })
       .then((responseData) => {
-        dispatch(startSession(responseData._sessionId, responseData._userId, true));
+        dispatch(startSession(responseData.sessionId, responseData.userId, true));
       })
-      .catch((err) => {
+      .catch(function (err) {
         console.error('Request failure: ', err);
       });
   };
@@ -34,7 +35,6 @@ export function startStartSession(name) {
 export function startJoinSession(session, user) {
   let updateDatabase;
   const { id: userId, ...userInfo } = user;
-
   if (userId) {
     const postData = {
       sessionId: session,
@@ -42,7 +42,7 @@ export function startJoinSession(session, user) {
       role: userInfo.role,
       name: userInfo.name,
     };
-    updateDatabase = (dispatch) => {
+    updateDatabase = () => {
       socket.emit('join', postData);
       return Promise.resolve();
     };
@@ -51,7 +51,9 @@ export function startJoinSession(session, user) {
       fetch(`${server}/api/join-session/${session}`, {
         method: 'put',
         body: `role=${userInfo.role}&name=${userInfo.name}`,
-        headers: 'Content-Type": "application/x-www-form-urlencoded',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
       })
         .then((response) => {
           return response.json();
@@ -61,10 +63,10 @@ export function startJoinSession(session, user) {
             sessionId: session,
             role: userInfo.role,
             name: userInfo.name,
-            userId: responseData._userId,
+            userId: responseData.userId,
           };
           socket.emit('join-new-user', postData);
-          dispatch(startSession(session, responseData._userId));
+          dispatch(startSession(session, responseData.userId));
         })
         .catch((err) => {
           console.error('Request failure: ', err);

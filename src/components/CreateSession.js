@@ -2,15 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
-import { startStartSession, startJoinSession } from '../actions/sessionActions';
-import { editUser } from '../actions/userActions';
+import { startStartSession, startJoinSession } from 'actions/sessionActions';
+import { editUser } from 'actions/userActions';
 
 export const CreateSession = props => (
   <div className="create-session">
     <div className="card create-session-outer">
       <div className="top">
         <h1>
-          Texas Plan 'em
+          Texas Plan em
         </h1>
       </div>
       <div className="bottom">

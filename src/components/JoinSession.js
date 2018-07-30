@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CreateSession from './CreateSession';
-import { startSession } from '../actions/sessionActions';
+import CreateSession from 'components/CreateSession';
+import { startSession } from 'actions/sessionActions';
 
 export class JoinSession extends React.Component {
   constructor(props, context) {

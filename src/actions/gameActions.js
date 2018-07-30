@@ -1,5 +1,5 @@
-import ActionList from './ActionList';
-import socket from '../socket';
+import socket from 'socket';
+import ActionList from 'actions/ActionList';
 
 export const submitCard = value => ({
   type: ActionList.GAME.SUBMIT_CARD,
@@ -30,20 +30,20 @@ export const submittedCards = cards => ({
   cards,
 });
 
-export const watchPlayerList = (dispatch, gameId) => {
+export const watchPlayerList = (dispatch) => {
   // retrieves player list from server
   socket.on('user-joined', (players) => {
     dispatch(playerList(players));
   });
 };
 
-export const watchCardsUp = (dispatch, gameId) => {
+export const watchCardsUp = (dispatch) => {
   socket.on('flip-cards', (value) => {
     dispatch(flipCards(value));
   });
 };
 
-export const watchSubmittedCards = (dispatch, gameId) => {
+export const watchSubmittedCards = (dispatch) => {
   // retrieve cards from server
   socket.on('watch-submit-card', (cards) => {
     dispatch(submittedCards(cards));
@@ -51,14 +51,12 @@ export const watchSubmittedCards = (dispatch, gameId) => {
 };
 
 export const setSubmitCard = (gameId, player, card) => {
-  return () => {
-    const postData = {
-      session: gameId,
-      user: player,
-      card,
-    };
-    socket.emit('set-card', postData);
+  const postData = {
+    session: gameId,
+    user: player,
+    card,
   };
+  return () => socket.emit('set-card', postData);
 };
 
 export const setCardsUp = (gameId) => {
