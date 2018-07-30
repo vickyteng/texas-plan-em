@@ -1,55 +1,8 @@
 {
   "name": "texas-plan-em",
-  "version": "0.1.0",
-  "private": true,
-  "engines": {
-    "yarn": "1.5.x"
-  },
-  "dependencies": {
-    "bootstrap": "^4.0.0",
-    "classnames": "^2.2.5",
-    "cors": "^2.8.4",
-    "dotenv": "^6.0.0",
-    "enzyme": "^3.3.0",
-    "enzyme-adapter-react-16": "^1.1.1",
-    "firebase": "^4.12.1",
-    "font-awesome": "^4.7.0",
-    "material-ui": "^0.20.0",
-    "moment": "^2.22.0",
-    "mongoose": "^5.1.6",
-    "node-sass-chokidar": "^1.2.2",
-    "npm-run-all": "^4.1.2",
-    "react": "^16.3.1",
-    "react-copy-to-clipboard": "^5.0.1",
-    "react-dom": "^16.3.1",
-    "react-fontawesome": "^1.6.1",
-    "react-icons": "^2.2.7",
-    "react-redux": "^5.0.7",
-    "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
-    "reactstrap": "^5.0.0",
-    "redux": "^3.7.2",
-    "redux-mock-store": "^1.5.1",
-    "redux-thunk": "^2.2.0",
-    "socket.io": "^2.1.1",
-    "socket.io-client": "^2.1.1",
-    "yarn": "^1.7.0"
-  },
-  "devDependencies": {
-    "concurrently": "^3.5.0"
-  },
-  "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start-js": "react-scripts start",
-    "start-local": "npm-run-all -p watch-css start-js",
-    "start": "npm-run-all build start-js",
-    "start-server": "node src/server/app.js",
-    "build-js": "react-scripts build",
-    "build": "npm-run-all build-css build-js",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "server": "nodemon server/app.js",
-    "dev": "concurrently \"npm run server\" \"yarn start-local\""
-  }
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/vickyteng/texas-plan-em.git",
+  "author": "Victoria <vteng0406@gmail.com>",
+  "license": "MIT"
 }
