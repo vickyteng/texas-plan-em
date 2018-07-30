@@ -1,8 +1,6 @@
 import ActionList from 'actions/ActionList';
 import socket from 'socket';
 
-var server = 'https://texasplan-em-server.herokuapp.com/';
-
 export const startSession = (session, userId, moderator) => ({
     type: ActionList.SESSION.START_SESSION,
     session,
@@ -12,7 +10,7 @@ export const startSession = (session, userId, moderator) => ({
 
 export function startStartSession (name) {
     return function (dispatch) {
-        fetch(`${server}/api/create-session`,  {
+        fetch(`/api/create-session`,  {
             method: 'post',
             body: `name=${name}`,
             headers: {
@@ -51,7 +49,7 @@ export function startJoinSession (session, user) {
         // if joining session from URL 
         } else {
             updateDatabase = dispatch =>
-                fetch(`${server}/api/join-session/${session}`, {
+                fetch(`/api/join-session/${session}`, {
                     method: 'put',
                     body: `role=${userInfo.role}&name=${userInfo.name}`,
                     headers: {
