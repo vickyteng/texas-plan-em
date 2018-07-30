@@ -8,5 +8,8 @@
   "scripts": {
     "start": "node index.js",
     "heroku-postbuild": "cd client && npm install && npm run build-css && npm run build-js"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
   }
 }
