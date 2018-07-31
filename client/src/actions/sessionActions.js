@@ -21,7 +21,7 @@ export function startStartSession (name) {
             return response.json();
         })
         .then((responseData) => {
-            dispatch(startSession(responseData._sessionId, responseData._userId, true))
+            dispatch(startSession(responseData.sessionId, responseData.userId, true))
         })
         .catch(function (err) {
             console.error('Request failure: ', err)
@@ -64,10 +64,10 @@ export function startJoinSession (session, user) {
                         sessionId: session,
                         role: userInfo.role,
                         name: userInfo.name,
-                        userId: responseData._userId
+                        userId: responseData.userId
                     }
                     socket.emit('join-new-user', postData);
-                    dispatch(startSession(session, responseData._userId));
+                    dispatch(startSession(session, responseData.userId));
                 })
                 .catch(function (err) {
                     console.error('Request failure: ', err)

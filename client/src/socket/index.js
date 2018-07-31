@@ -1,4 +1,4 @@
 import io from 'socket.io-client'
 
-const socket = io.connect("https://texasplan-em-server.herokuapp.com/");
+const socket = io.connect('/sockets');
 export default socket;
