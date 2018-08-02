@@ -6,20 +6,21 @@ API Server Repo: [Texas Plan 'Em Server](https://github.com/agevorgy/texas-plan-
 ### To run locally
 
 1. Clone the repository.
-2. Create a `.env` file in the root and copy the contents of `.env.sample`. 
-3. Install dependencies
+2. Create a `.env` file in the root and copy the contents of `.env.sample`. Fill in the API URL
+3. In the client folder, create a `.env` file and copy the contents of `.env.sample`. Fill in the API URL
+4. Install dependencies
   ```
   $ yarn
   ```
-4. Build client code
+5. Build client code
   ```
   $ cd client && yarn build
   ```
-5. Start server in root directory
+6. Start server in root directory
   ```
   $ cd .. && yarn start
   ```
-6. Browse to [http://localhost:5000/](http://localhost:5000/)
+7. Browse to [http://localhost:5000/](http://localhost:5000/)
 
 ### Contributors
 - [Juan Flores](https://github.com/juanflo)
