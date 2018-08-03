@@ -6,13 +6,13 @@
   $ git push heroku master
   ```
 
-  or
+    or
 
-  [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 2. Now, you need to set up configuration variables on Heroku. 
-  1. Go to Settings -> Reveal Config Vars.
-  2. Add configuration variables. All needed variables are inside _.env_. 
-  The configuration variable you need to assign: 
+1. Go to Settings -> Reveal Config Vars.
+2. Add configuration variables. All needed variables are inside _.env_. 
+The configuration variable you need to assign: 
   ```API_HOST```.
 3. Open application in the browser
   ```
