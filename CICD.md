@@ -1,8 +1,9 @@
 ### Deploying to Heroku
-1. Create a new Heroku application, and push your application to a Git remote repository
+1. Create a new Heroku application and push your application to a Git remote repository.
+  If you do not provide a name for your application, Heroku will automatically generate a random one.
 
   ```
-  $ heroku create
+  $ heroku create [NAME]
   $ git push heroku master
   ```
 
