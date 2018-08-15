@@ -11,13 +11,12 @@ import './index.css';
 const store = configureStore();
 
 const App = (
-    <Provider store={store}>
-        <MuiThemeProvider>
-            <AppRouter/>
-        </MuiThemeProvider>
-    </Provider>
+  <Provider store={store}>
+    <MuiThemeProvider>
+      <AppRouter />
+    </MuiThemeProvider>
+  </Provider>
 );
 
 ReactDOM.render(App, document.getElementById('root'));
 registerServiceWorker();
-
